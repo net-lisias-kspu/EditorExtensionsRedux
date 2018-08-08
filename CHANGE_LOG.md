@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2018-0320: 3.3.19.2 (linuxgurugamer) for KSP 1.4.1
+	+ Fixed fuzzy buttons
 * 2018-0318: 3.3.19.1 (linuxgurugamer) for KSP 1.4.1
 	+ Fixed issue when displaying autostruts, most got reset to Heaviest
 * 2018-0316: 3.3.19 (linuxgurugamer) for KSP 1.4.1
