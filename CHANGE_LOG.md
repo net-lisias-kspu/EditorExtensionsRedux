@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2017-1008: 3.3.14 (linuxgurugamer) for KSP 1.3.1
+	+ Updated for KSP 1.3.1
 * 2017-0603: 3.3.13.1 (linuxgurugamer) for KSP 1.3.0
 	+ Updated .version file
 * 2017-0526: 3.3.13 (linuxgurugamer) for KSP 1.2.2
