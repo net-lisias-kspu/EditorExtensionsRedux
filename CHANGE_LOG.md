@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-0515: 3.2.9 (linuxgurugamer) for KSP 1.1.2
+	+ Removed old code from the FineAdjust Update function which was causing an exception
 * 2016-0513: 3.2.8 (linuxgurugamer) for KSP 1.1.2
 	+ Added code from Fwiffo to fix bug where changing the angle snap while in rotate mode would not affect the rotate gizmo
 * 2016-0504: 3.2.7 (linuxgurugamer) for KSP 1.1.2
