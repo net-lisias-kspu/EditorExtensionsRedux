@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2015-0503: 2.7 (MachXXV) for KSP 1.0.2
+	+ Editor Extensions v2.7
 * 2015-0428: 2.6 (MachXXV) for KSP 1.0
 	+ Editor Extensions v2.6
 * 2014-1227: 2.5 (MachXXV) for KSP 0.90 Beta
