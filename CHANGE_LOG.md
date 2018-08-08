@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-0504: 3.2.7 (linuxgurugamer) for KSP 1.1.2
+	+ Added code so that typing in text fields will be ignored
 * 2016-0501: 3.2.6 (linuxgurugamer) for KSP 1.1.2
 	+ Added 1.1.2 compatability
 * 2016-0430: 3.2.5 (linuxgurugamer) for KSP 1.1.2
