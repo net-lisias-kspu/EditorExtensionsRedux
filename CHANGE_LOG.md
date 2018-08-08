@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2018-0316: 3.3.19 (linuxgurugamer) for KSP 1.4.1
+	+ Updated obsolete Linerenderer calls
 * 2018-0316: 3.3.18 (linuxgurugamer) for KSP 1.4.1
 	+ Changed resize of settings window from just before ClickThroughBlocker.GUILayoutWindow to after to toolbar, to avoid confusing the ClickThroughBlocker
 * 2018-0315: 3.3.17 (linuxgurugamer) for KSP 1.4.1
