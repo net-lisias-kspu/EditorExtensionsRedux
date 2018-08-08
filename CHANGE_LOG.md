@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-0501: 3.2.6 (linuxgurugamer) for KSP 1.1.2
+	+ Added 1.1.2 compatability
 * 2016-0430: 3.2.5 (linuxgurugamer) for KSP 1.1.2
 	+ Changes in 3.2.5
 * 2016-0430: 3.2.4 (linuxgurugamer) for KSP 1.1.1
