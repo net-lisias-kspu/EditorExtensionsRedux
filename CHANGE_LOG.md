@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-1010: 3.3.1 (linuxgurugamer) for KSP 1.1.3 PRE-RELEASE
+	+ Fixed bug with no offset limit preventing swap between local and absolute coordinates
 * 2016-1009: 3.3.0 (linuxgurugamer) for KSP 1.1.3 PRE-RELEASE
 	+ Added ability to disable internal reroot, so that you can use the stock reroot to reroot shadow part assemblies
 * 2016-1009: 3.2.19 (linuxgurugamer) for KSP 1.1.3 PRE-RELEASE
