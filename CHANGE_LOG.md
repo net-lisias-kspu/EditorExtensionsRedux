@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-0426: 3.2.2 (linuxgurugamer) for KSP 1.1
+	+ Code changes to allow to work on Linux and OSX
 * 2016-0420: 3.2.1.9 (linuxgurugamer) for KSP 1.1
 	+ rebuild
 * 0000-0000: 3.2.1.8 (linuxgurugamer) for KSP 1.1
