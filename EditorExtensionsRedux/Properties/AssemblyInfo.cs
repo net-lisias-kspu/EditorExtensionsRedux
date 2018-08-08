@@ -9,3 +9,6 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCopyright("MachXXV 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+
+[assembly: AssemblyVersion(EditorExtensionsRedux.PluginVersion.Number)]
+[assembly: AssemblyFileVersion(EditorExtensionsRedux.PluginVersion.Number)]

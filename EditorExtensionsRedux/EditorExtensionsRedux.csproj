@@ -24,8 +24,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <CustomCommands>
-    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,18 +31,11 @@
     <OutputPath>..\bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <WarningLevel>4</WarningLevel>
-    <CustomCommands>
-    </CustomCommands>
     <ConsolePause>false</ConsolePause>
     <ErrorReport>prompt</ErrorReport>
     <DebugType>full</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AssemblyVersion.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AssemblyVersion.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EditorExtensionsRedux.cs" />
     <Compile Include="Logging.cs" />
@@ -71,13 +62,12 @@
     <Compile Include="NoOffsetLimits\NoOffsetLimitsBehaviour.cs" />
     <Compile Include="FineAdjustWindow.cs" />
     <Compile Include="GizmoEvents.cs" />
+    <Compile Include="Version.cs">
+      <DependentUpon>Version.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Content Include="AssemblyVersion.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AssemblyVersion.cs</LastGenOutput>
-    </Content>
     <Content Include="Textures\AppLauncherIcon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -93,6 +83,10 @@
     <None Include="Textures\AppLauncherIcon.pdn" />
     <None Include="StripSymmetry\Gamedata\StripSymmetry\plugins\PluginData\StripSymmetry\config.xml" />
     <None Include="NoOffsetLimits\License.txt" />
+    <None Include="Version.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Version.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
