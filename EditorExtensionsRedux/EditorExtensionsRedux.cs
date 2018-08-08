@@ -516,10 +516,8 @@ namespace EditorExtensionsRedux
         const string DegreesSymbol = "\u00B0";
 
         EditorLogic editor;
-        Version pluginVersion;
+		readonly Version pluginVersion = Assembly.GetExecutingAssembly().GetName().Version;
         public ConfigData cfg;
-        string _pluginDirectory;
-        string _configFilePath;
         //int _symmetryMode = 0;
 
         SettingsWindow _settingsWindow = null;
@@ -806,24 +804,16 @@ namespace EditorExtensionsRedux
             Log.Info("EditorExtensionsRedux.InitConfig");
             try
             {
-                //get location and version info of the plugin
-                Assembly execAssembly = Assembly.GetExecutingAssembly();
-                pluginVersion = execAssembly.GetName().Version;
-                _pluginDirectory = Path.GetDirectoryName(execAssembly.Location);
-
-                //dll's path + filename for the config file
-                _configFilePath = Path.Combine(_pluginDirectory, ConfigFileName);
-
-                //check if the config file is there and create if its missing
-                if (ConfigManager.FileExists(_configFilePath))
+				//check if the config file is there and create if its missing
+                if (ConfigManager.FileExists(ConfigFileName))
                 {
 
-                    cfg = ConfigManager.LoadConfig(_configFilePath);
+                    cfg = ConfigManager.LoadConfig(ConfigFileName);
 
                     if (cfg == null)
                     {
                         //failed to load config, create new
-                        cfg = ConfigManager.CreateDefaultConfig(_configFilePath, pluginVersion.ToString());
+                        cfg = ConfigManager.CreateDefaultConfig(ConfigFileName, pluginVersion.ToString());
                     }
                     else
                     {
@@ -855,7 +845,7 @@ namespace EditorExtensionsRedux
                         if (versionMismatch)
                         {
                             Log.Info("Config file version mismatch, replacing with new defaults");
-                            cfg = ConfigManager.CreateDefaultConfig(_configFilePath, pluginVersion.ToString());
+                            cfg = ConfigManager.CreateDefaultConfig(ConfigFileName, pluginVersion.ToString());
                         }
                         else
                         {
@@ -866,7 +856,7 @@ namespace EditorExtensionsRedux
                 }
                 else
                 {
-                    cfg = ConfigManager.CreateDefaultConfig(_configFilePath, pluginVersion.ToString());
+                    cfg = ConfigManager.CreateDefaultConfig(ConfigFileName, pluginVersion.ToString());
                     Log.Info("No existing config found, created new default config");
                 }
 
@@ -2262,7 +2252,7 @@ editor.angleSnapSprite.gameObject.SetActive (false);
         public void SettingsWindowClosed()
         {
             Log.Debug("Settings window closed, reloading config");
-            cfg = ConfigManager.LoadConfig(_configFilePath);
+            cfg = ConfigManager.LoadConfig(ConfigFileName);
             Hide();
         }
 
@@ -2396,7 +2386,7 @@ editor.angleSnapSprite.gameObject.SetActive (false);
             GUILayout.BeginVertical();
             if (GUILayout.Button("Settings"))
             {
-                _settingsWindow.Show(cfg, _configFilePath, pluginVersion);
+				_settingsWindow.Show(cfg, ConfigManager.ResolvePath(ConfigFileName), pluginVersion);
                 this.Visible = true;
             }
 #if true

@@ -9,10 +9,20 @@ namespace EditorExtensionsRedux
 {
 	public static class ConfigManager
 	{
+		private static readonly string PLUGINDATA = Path.Combine(
+														Path.Combine(KSPUtil.ApplicationRootPath, "PluginData"),
+														typeof(ConfigManager).Assembly.GetName().Name
+		);
+
+		public static string ResolvePath(string fn)
+		{
+			return Path.Combine(PLUGINDATA, fn);
+		}
+
 		public static bool FileExists (string filePath)
 		{
 			try {
-				FileInfo file = new FileInfo (filePath);
+				FileInfo file = new FileInfo (ResolvePath(filePath));
 				return file.Exists;
 			} catch (Exception ex) {
 				Log.Error ("Failed to verify file " + filePath + " Error: " + ex.Message);
@@ -20,8 +30,10 @@ namespace EditorExtensionsRedux
 			}
 		}
 
-		public static bool SaveConfig (ConfigData configData, string configFilePath)
+		public static bool SaveConfig (ConfigData configData, string fn)
 		{
+			if (!Directory.Exists(PLUGINDATA)) Directory.CreateDirectory(PLUGINDATA);
+			string configFilePath = ResolvePath(fn);
 			try {
 				XmlSerializer serializer = new XmlSerializer (typeof(ConfigData));
 				using (TextWriter writer = new StreamWriter (configFilePath)) {
@@ -35,9 +47,11 @@ namespace EditorExtensionsRedux
 			}
 		}
 
-		public static ConfigData LoadConfig (string configFilePath)
+		public static ConfigData LoadConfig (string fn)
 		{
-			try {
+			string configFilePath = ResolvePath(fn);
+			try
+			{
 				XmlSerializer deserializer = new XmlSerializer (typeof(ConfigData));
 
 				ConfigData data;
@@ -60,9 +74,10 @@ namespace EditorExtensionsRedux
 		/// will replace any existing file
 		/// </summary>
 		/// <returns>New config object with default settings</returns>
-		public static ConfigData CreateDefaultConfig (string configFilePath, string version)
+		public static ConfigData CreateDefaultConfig (string fn, string version)
 		{
-			try {
+			try
+			{
                 ConfigData defaultConfig = new ConfigData() {
                     AngleSnapValues = new List<float> { 0.0f, 1.0f, 5.0f, 15.0f, 22.5f, 30.0f, 45.0f, 60.0f, 90.0f },
                     MaxSymmetry = 20,
@@ -102,7 +117,7 @@ namespace EditorExtensionsRedux
 				};
 				defaultConfig.KeyMap = defaultKeys;
 
-				if (ConfigManager.SaveConfig (defaultConfig, configFilePath))
+				if (ConfigManager.SaveConfig (defaultConfig, fn))
 					Log.Debug ("Created default config");
 				else
 					Log.Error ("Failed to save default config");
