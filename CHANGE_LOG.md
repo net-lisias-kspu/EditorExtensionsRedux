@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-1102: 3.3.5.1 (linuxgurugamer) for KSP 1.2
+	+ Fixed version file
 * 2016-1102: 3.3.5 (linuxgurugamer) for KSP 1.2
 	+ Added AnglesnapModIsToggle, if enabled, hitting the Mod-C (for Windows,ALT-C) will switch between 1 and the last setting
 * 2016-1101: 3.3.4 (linuxgurugamer) for KSP 1.2
