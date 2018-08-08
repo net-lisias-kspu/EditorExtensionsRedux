@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-0519: 3.2.12 (linuxgurugamer) for KSP 1.1.2
+	+ Fixed rotation gizmo to not angle snap when anglesnap is off
 * 2016-0518: 3.2.11 (linuxgurugamer) for KSP 1.1.2
 	+ Added 1/4 second delay in closing menu
 * 2016-0515: 3.2.10 (linuxgurugamer) for KSP 1.1.2
