@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-0927: 3.2.16 (linuxgurugamer) for KSP 1.1.3 PRE-RELEASE
+	+ updated for build 1540
 * 2016-0919: 3.2.15.1 (linuxgurugamer) for KSP 1.1.3 PRE-RELEASE
 	+ No changelog provided
 * 2016-0915: 3.2.15 (linuxgurugamer) for KSP 1.1.3 PRE-RELEASE
