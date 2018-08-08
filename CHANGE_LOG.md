@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-1107: 3.3.8 (linuxgurugamer) for KSP 1.2.1
+	+ Fixed issue where NoOffsetLimits was not working upon entry into editor
 * 2016-1106: 3.3.7 (linuxgurugamer) for KSP 1.2.1
 	+ Added code to toggle no offset limit to settings window
 * 2016-1102: 3.3.6 (linuxgurugamer) for KSP 1.2.1
