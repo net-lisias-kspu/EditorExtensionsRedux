@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2017-0526: 3.3.13 (linuxgurugamer) for KSP 1.2.2
+	+ Updated for 1.3
 * 2017-0402: 3.3.12 (linuxgurugamer) for KSP 1.2.2
 	+ Fixed issue where changing the Reroot setting in the settings window wasn't toggling the internal reroot flag
 * 2016-1218: 3.3.11.1 (linuxgurugamer) for KSP 1.2.2
