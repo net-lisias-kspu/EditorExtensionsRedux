@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2017-1021: 3.3.15 (linuxgurugamer) for KSP 1.3.1
+	+ Added check for compound part in NoOffsetLimits, will not work on compound parts
 * 2017-1008: 3.3.14 (linuxgurugamer) for KSP 1.3.1
 	+ Updated for KSP 1.3.1
 * 2017-0603: 3.3.13.1 (linuxgurugamer) for KSP 1.3.0
