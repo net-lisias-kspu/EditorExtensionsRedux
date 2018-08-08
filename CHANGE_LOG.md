@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-0518: 3.2.11 (linuxgurugamer) for KSP 1.1.2
+	+ Added 1/4 second delay in closing menu
 * 2016-0515: 3.2.10 (linuxgurugamer) for KSP 1.1.2
 	+ Added UI scaling code to position of EEX menu
 * 2016-0515: 3.2.9 (linuxgurugamer) for KSP 1.1.2
