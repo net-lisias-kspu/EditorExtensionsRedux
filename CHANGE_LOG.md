@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2018-0807: 3.3.19.5 (linuxgurugamer) for KSP 1.4.4
+	+ Added button to Settings page 2 to "Reset Symmetry Mode & Angle Snap keys"
 * 2018-0329: 3.3.19.3 (linuxgurugamer) for KSP 1.4.1
 	+ Added code to dynamically assign Reflection offsets.  Hopefully this will eliminate the need to do manual changes in the future
 * 2018-0320: 3.3.19.2 (linuxgurugamer) for KSP 1.4.1
