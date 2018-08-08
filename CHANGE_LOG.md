@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-1116: 3.3.10 (linuxgurugamer) for KSP 1.2.1
+	+ Fixed null ref when F is pressed and no part is selected
 * 2016-1109: 3.3.9 (linuxgurugamer) for KSP 1.2.1
 	+ Fixed (the right way) the no offset limit local/absolute
 * 2016-1107: 3.3.8 (linuxgurugamer) for KSP 1.2.1
