@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-1109: 3.3.9 (linuxgurugamer) for KSP 1.2.1
+	+ Fixed (the right way) the no offset limit local/absolute
 * 2016-1107: 3.3.8 (linuxgurugamer) for KSP 1.2.1
 	+ Fixed issue where NoOffsetLimits was not working upon entry into editor
 * 2016-1106: 3.3.7 (linuxgurugamer) for KSP 1.2.1
