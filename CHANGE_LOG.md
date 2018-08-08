@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-1102: 3.3.6 (linuxgurugamer) for KSP 1.2.1
+	+ Fixed  menu Show Tweakables, for when Advanced tweakables is enabled, to show at the right height
 * 2016-1102: 3.3.5.1 (linuxgurugamer) for KSP 1.2
 	+ Fixed version file
 * 2016-1102: 3.3.5 (linuxgurugamer) for KSP 1.2
