@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-0513: 3.2.8 (linuxgurugamer) for KSP 1.1.2
+	+ Added code from Fwiffo to fix bug where changing the angle snap while in rotate mode would not affect the rotate gizmo
 * 2016-0504: 3.2.7 (linuxgurugamer) for KSP 1.1.2
 	+ Added code so that typing in text fields will be ignored
 * 2016-0501: 3.2.6 (linuxgurugamer) for KSP 1.1.2
