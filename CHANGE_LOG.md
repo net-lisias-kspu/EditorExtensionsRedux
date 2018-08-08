@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-1015: 3.3.3 (linuxgurugamer) for KSP 1.2
+	+ Added Autostrut and Rigidity buttons, thanks @Boop:
 * 2016-1014: 3.3.2 (linuxgurugamer) for KSP 1.2
 	+ 1.2 Boop release
 * 2016-1010: 3.3.1 (linuxgurugamer) for KSP 1.1.3 PRE-RELEASE
