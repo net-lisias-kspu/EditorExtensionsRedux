@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2016-1211: 3.3.11 (linuxgurugamer) for KSP 1.2.2
+	+ Fixed positioning of menu in editor
 * 2016-1207: 3.3.10.1 (linuxgurugamer) for KSP 1.2.2
 	+ Updated for 1.2.2
 * 2016-1116: 3.3.10 (linuxgurugamer) for KSP 1.2.1
