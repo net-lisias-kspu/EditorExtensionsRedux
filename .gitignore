@@ -1,1 +1,10 @@
 .vs
+GameData/*/Plugins/*.dll
+GameData/*/CHANGE_LOG.md
+GameData/*/CHANGES.md
+GameData/*/README.md
+GameData/*/LICENSE
+GameData/*/*.version
+bin
+*/Version.cs
+*/obj
