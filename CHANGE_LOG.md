@@ -1,5 +1,7 @@
 # Editor Extensions Redux :: Change Log
 
+* 2018-0318: 3.3.19.1 (linuxgurugamer) for KSP 1.4.1
+	+ Fixed issue when displaying autostruts, most got reset to Heaviest
 * 2018-0316: 3.3.19 (linuxgurugamer) for KSP 1.4.1
 	+ Updated obsolete Linerenderer calls
 * 2018-0316: 3.3.18 (linuxgurugamer) for KSP 1.4.1
