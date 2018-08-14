@@ -6,5 +6,5 @@ GameData/*/README.md
 GameData/*/LICENSE
 GameData/*/*.version
 bin
-*/Version.cs
+**/Properties/Version.cs
 */obj

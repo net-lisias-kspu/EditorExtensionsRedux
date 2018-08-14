@@ -62,7 +62,7 @@
     <Compile Include="NoOffsetLimits\NoOffsetLimitsBehaviour.cs" />
     <Compile Include="FineAdjustWindow.cs" />
     <Compile Include="GizmoEvents.cs" />
-    <Compile Include="Version.cs">
+    <Compile Include="Properties\Version.cs">
       <DependentUpon>Version.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -83,7 +83,7 @@
     <None Include="Textures\AppLauncherIcon.pdn" />
     <None Include="StripSymmetry\Gamedata\StripSymmetry\plugins\PluginData\StripSymmetry\config.xml" />
     <None Include="NoOffsetLimits\License.txt" />
-    <None Include="Version.tt">
+    <None Include="Properties\Version.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Version.cs</LastGenOutput>
     </None>
