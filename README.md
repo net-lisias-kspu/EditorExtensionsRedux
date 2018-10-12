@@ -5,11 +5,11 @@ Extensions for the KSP Editor. Unofficial fork by Lisias.
 
 ## In a Hurry
 
-* [Releases](https://github.com/net-lisias-kspu/EditorExtensionsRedux/tree/Archive)
-* [Source](https://github.com/net-lisias-kspu/EditorExtensionsRedux)
 * [Latest Release](https://github.com/net-lisias-kspu/EditorExtensionsRedux/releases)
+	+ [Binaries](https://github.com/net-lisias-kspu/EditorExtensionsRedux/tree/Archive)
+* [Source](https://github.com/net-lisias-kspu/EditorExtensionsRedux)
 * [Change Log](./CHANGE_LOG.md)
- 
+
 
 ## Description
 
