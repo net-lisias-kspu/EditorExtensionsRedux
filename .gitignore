@@ -4,6 +4,7 @@ GameData/*/CHANGE_LOG.md
 GameData/*/CHANGES.md
 GameData/*/README.md
 GameData/*/LICENSE
+GameData/*/NOTICE
 GameData/*/*.version
 bin
 obj
