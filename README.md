@@ -1,4 +1,4 @@
-# Editor Extensions Redux Unofficial
+# Editor Extensions Redux /L Unofficial
 
 Extensions for the KSP Editor. Unofficial fork by Lisias.
 
@@ -52,17 +52,17 @@ In your KSP GameData folder, delete any existing EditorExtensions folder. Downlo
 
 ### License:
 
-Released under MIT license.
+Released under MIT license. See [here](./LICENSE).
+
+Please note the copyrights and trademarks in [NOTICE](./NOTICE).
 
 
 ## UPSTREAM
 
 * [linuxgurugamer](https://forum.kerbalspaceprogram.com/index.php?/profile/129964-linuxgurugamer/) CURRENT MAINTAINER
-	+ [Forum](https://forum.kerbalspaceprogram.com/index.php?/topic/162790-141-hangar-extender-extended/)
-	+ [SpaceDock](https://spacedock.info/mod/1428/HangerExtender)
-	+ [GitHub](https://github.com/linuxgurugamer/FShangarExtender)
-* [Alewx](https://forum.kerbalspaceprogram.com/index.php?/profile/102791-alewx/) M.I.A.
-	+ [GitHub](https://github.com/Omegano/FMRS)
-* [Snjo](https://github.com/Alewx/FShangarExtender) ROOT
-	+ [Forum](https://forum.kerbalspaceprogram.com/index.php?/topic/59703-10-hangar-extender-v33/&)
-	+ [GitHub](https://github.com/snjo/FShangarExtender/releases/latest)
+	+ [Forum](https://forum.kerbalspaceprogram.com/index.php?/topic/127378-151-editor-extensions-redux-released-with-selectroot-merge-stripsymmetry-nooffsetlimits/)
+	+ [SpaceDock](https://spacedock.info/mod/48/Editor%20Extensions%20Redux)
+	+ [GitHub](https://github.com/linuxgurugamer/EditorExtensionsRedux)
+* [MachXXV](https://github.com/MachXXV/EditorExtensions) ROOT
+	+ [Forum](https://forum.kerbalspaceprogram.com/index.php?/topic/35703-103-editor-extensions-v212-23-june/&tab=comments#comment-489514)
+	+ [GitHub](https://github.com/MachXXV/EditorExtensions)
