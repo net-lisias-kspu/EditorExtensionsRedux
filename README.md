@@ -49,7 +49,9 @@ In your KSP GameData folder, delete any existing EditorExtensions folder. Downlo
 
 ### Dependencies
 
-* [Click Through Blocker](https://forum.kerbalspaceprogram.com/index.php?/topic/170747-141-click-through-blocker/)
+* Hard Dependencies
+	+ [KSP API Extensions/L](https://github.com/net-lisias-ksp/KSPAPIExtensions) 2.0 or later
+	+ [Click Through Blocker](https://forum.kerbalspaceprogram.com/index.php?/topic/170747-141-click-through-blocker/)
 
 ### License:
 
