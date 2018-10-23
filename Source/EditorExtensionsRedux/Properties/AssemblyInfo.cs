@@ -14,3 +14,4 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyFileVersion(EditorExtensionsRedux.PluginVersion.Number)]
 
 [assembly: KSPAssemblyDependency("KSPe", 2, 0)]
+[assembly: KSPAssemblyDependency("ClickThroughBlocker", 0, 1)]
