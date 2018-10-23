@@ -12,3 +12,5 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyVersion(EditorExtensionsRedux.PluginVersion.Number)]
 [assembly: AssemblyFileVersion(EditorExtensionsRedux.PluginVersion.Number)]
+
+[assembly: KSPAssemblyDependency("KSPe", 2, 0)]
