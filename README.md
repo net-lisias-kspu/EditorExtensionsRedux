@@ -42,7 +42,8 @@ Extensions for the KSP Editor. Unofficial fork by Lisias.
 	+ **Alt+Z** - Toggle part clipping (CAUTION: This is a cheat option)
 Space- When no part is selected, resets camera pitch and heading (straight ahead and level)
 
-### Instalation
+
+## Instalation
 
 In your KSP GameData folder, delete any existing EditorExtensions folder. Download the zip file to your KSP GameData folder and unzip.﻿
 
