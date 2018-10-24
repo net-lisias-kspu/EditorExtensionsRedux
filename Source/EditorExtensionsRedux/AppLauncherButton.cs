@@ -1,7 +1,7 @@
 ﻿using System;
-using System.IO;
 using UnityEngine;
 using KSP.UI.Screens;
+using KSPe.IO;
 
 namespace EditorExtensionsRedux
 {
@@ -12,9 +12,9 @@ namespace EditorExtensionsRedux
 
 		public static AppLauncherButton Instance;
 
-		const string texPathDefault = "EditorExtensionsRedux/Textures/AppLauncherIcon";
-		const string texPathOn = "EditorExtensionsRedux/Textures/AppLauncherIcon-On";
-		const string texPathOff = "EditorExtensionsRedux/Textures/AppLauncherIcon-Off";
+		const string texPathDefault = "Textures/AppLauncherIcon";
+		const string texPathOn = "Textures/AppLauncherIcon-On";
+		const string texPathOff = "Textures/AppLauncherIcon-Off";
 
 		private void Start ()
 		{
@@ -66,11 +66,11 @@ namespace EditorExtensionsRedux
             try
             {
                 string path = fileNamePath;
-                if (!File.Exists(fileNamePath))
+                if (!File<EditorExtensions>.Asset.Exists(fileNamePath))
                 {
                     // Look for the file with an appended suffix.
                     for (int i = 0; i < imgSuffixes.Length; i++)
-                        if (File.Exists(fileNamePath + imgSuffixes[i]))
+                        if (File<EditorExtensions>.Asset.Exists(fileNamePath + imgSuffixes[i]))
                         {
                             path = fileNamePath + imgSuffixes[i];
                             break;
@@ -78,11 +78,11 @@ namespace EditorExtensionsRedux
                 }
 
                 //File Exists check
-                if (File.Exists(path))
+                if (File<EditorExtensions>.Asset.Exists(path))
                 {
                     try
                     {
-                        tex.LoadImage(File.ReadAllBytes(path));
+                        tex.LoadImage(File<EditorExtensions>.Asset.ReadAllBytes(path));
                         blnReturn = true;
                     }
                     catch (Exception ex)
