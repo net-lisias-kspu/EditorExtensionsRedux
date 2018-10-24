@@ -1,30 +1,31 @@
 ﻿using System.Diagnostics;
+using KSPe.Util.Log;
 
 namespace EditorExtensionsRedux
 {
 	public static class Log
 	{
-		const string MessagePrefix = "EditorExtensions: ";
+		private static readonly Logger logger = Logger.CreateForType<EditorExtensions>();
 
 		[Conditional("DEBUG")]
 		public static void Debug (string message)
 		{
-			UnityEngine.Debug.Log (MessagePrefix + message);
+			logger.dbg(message);
 		}
 		[ConditionalAttribute("DEBUG")]
 		public static void Info(string message)
 		{
-			UnityEngine.Debug.Log (MessagePrefix + message);
+			logger.info(message);
 		}
 
 		public static void Error(string message)
 		{
-			UnityEngine.Debug.LogError (MessagePrefix + message);
+			logger.error(message);
 		}
 
 		public static void Warn(string message)
 		{
-			UnityEngine.Debug.LogWarning (MessagePrefix + message);
+			logger.warn(message);
 		}
 	}
 }
