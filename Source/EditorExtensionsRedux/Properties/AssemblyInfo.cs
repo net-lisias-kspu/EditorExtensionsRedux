@@ -1,5 +1,4 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("EditorExtensions")]
 [assembly: AssemblyDescription("Kerbal Space Program Plugin : Editor Extensions")]

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using UnityEngine;
 using EditorGizmos;
-using UnityEngine;
-using System.Reflection;
 
 #if true
 namespace EditorExtensionsRedux.NoOffsetBehaviour

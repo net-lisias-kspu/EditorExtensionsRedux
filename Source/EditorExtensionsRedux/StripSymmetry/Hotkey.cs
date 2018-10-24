@@ -1,9 +1,8 @@
-﻿#if false
-using System.Runtime.Hosting;
-using KSP.IO;
+﻿#if true
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using KSPe.IO.Data;
 
 namespace EditorExtensionsRedux.StripSymmetry
 {

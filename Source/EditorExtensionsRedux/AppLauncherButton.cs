@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using UnityEngine;
 using KSP.UI.Screens;
 
@@ -65,11 +66,11 @@ namespace EditorExtensionsRedux
             try
             {
                 string path = fileNamePath;
-                if (!System.IO.File.Exists(fileNamePath))
+                if (!File.Exists(fileNamePath))
                 {
                     // Look for the file with an appended suffix.
                     for (int i = 0; i < imgSuffixes.Length; i++)
-                        if (System.IO.File.Exists(fileNamePath + imgSuffixes[i]))
+                        if (File.Exists(fileNamePath + imgSuffixes[i]))
                         {
                             path = fileNamePath + imgSuffixes[i];
                             break;
@@ -77,11 +78,11 @@ namespace EditorExtensionsRedux
                 }
 
                 //File Exists check
-                if (System.IO.File.Exists(path))
+                if (File.Exists(path))
                 {
                     try
                     {
-                        tex.LoadImage(System.IO.File.ReadAllBytes(path));
+                        tex.LoadImage(File.ReadAllBytes(path));
                         blnReturn = true;
                     }
                     catch (Exception ex)

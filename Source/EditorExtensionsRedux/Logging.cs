@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace EditorExtensionsRedux
 {

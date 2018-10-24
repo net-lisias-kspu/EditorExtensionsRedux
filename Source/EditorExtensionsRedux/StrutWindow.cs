@@ -1,5 +1,4 @@
 ﻿#if false
-using System;
 using UnityEngine;
 
 namespace EditorExtensionsRedux
