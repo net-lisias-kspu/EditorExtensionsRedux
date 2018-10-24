@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+#if DEBUG
+using System.Text;
+#endif
 
 using UnityEngine;
 using UnityEngine.EventSystems;

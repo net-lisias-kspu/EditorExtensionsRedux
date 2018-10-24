@@ -12,5 +12,5 @@ using System.Reflection;
 [assembly: AssemblyVersion(EditorExtensionsRedux.PluginVersion.Number)]
 [assembly: AssemblyFileVersion(EditorExtensionsRedux.PluginVersion.Number)]
 
-[assembly: KSPAssemblyDependency("KSPe", 2, 0)]
-[assembly: KSPAssemblyDependency("ClickThroughBlocker", 0, 1)]
+[assembly: KSPAssemblyDependency("KSPe", 2, 1)]
+[assembly: KSPAssemblyDependency("ClickThroughBlocker", 1, 0)]
