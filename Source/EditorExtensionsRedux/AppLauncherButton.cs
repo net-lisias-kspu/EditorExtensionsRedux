@@ -12,9 +12,9 @@ namespace EditorExtensionsRedux
 
 		public static AppLauncherButton Instance;
 
-		const string texPathDefault = "Textures/AppLauncherIcon";
-		const string texPathOn = "Textures/AppLauncherIcon-On";
-		const string texPathOff = "Textures/AppLauncherIcon-Off";
+		private const string texPathDefault = "Textures/AppLauncherIcon";
+		private const string texPathOn = "Textures/AppLauncherIcon-On";
+		private const string texPathOff = "Textures/AppLauncherIcon-Off";
 
 		private void Start ()
 		{
@@ -107,7 +107,7 @@ namespace EditorExtensionsRedux
         Texture2D GetTexture(string path, bool b)
         {
             Texture2D tex = new Texture2D(16, 16, TextureFormat.ARGB32, false);
-			if (!LoadImageFromFile(ref tex, KSPUtil.ApplicationRootPath + "GameData/" + path))
+			if (!LoadImageFromFile(ref tex, path))
 				Log.Error("Failed to load tex " + path);
             return tex;
         }

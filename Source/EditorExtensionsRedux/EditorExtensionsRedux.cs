@@ -2380,7 +2380,7 @@ editor.angleSnapSprite.gameObject.SetActive (false);
             GUILayout.BeginVertical();
             if (GUILayout.Button("Settings"))
             {
-				_settingsWindow.Show(cfg, ConfigManager.ResolvePath(ConfigFileName), pluginVersion);
+				_settingsWindow.Show(cfg, KSPe.IO.File<EditorExtensions>.Data.Solve(ConfigFileName), pluginVersion);
                 this.Visible = true;
             }
 #if true

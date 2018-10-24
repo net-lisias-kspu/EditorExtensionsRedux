@@ -1,5 +1,5 @@
 .vs
-GameData/*/Plugins/*.dll
+GameData/*/*.dll
 GameData/*/CHANGE_LOG.md
 GameData/*/CHANGES.md
 GameData/*/README.md

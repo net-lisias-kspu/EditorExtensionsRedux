@@ -1,28 +1,19 @@
 ﻿using System;
-using System.IO;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 using UnityEngine;
+using SIO = System.IO;
+using KSPe.IO;
+using KSPe.IO.Data;
 
 namespace EditorExtensionsRedux
 {
 	public static class ConfigManager
 	{
-		private static readonly string PLUGINDATA = Path.Combine(
-														Path.Combine(KSPUtil.ApplicationRootPath, "PluginData"),
-														typeof(ConfigManager).Assembly.GetName().Name
-		);
-
-		public static string ResolvePath(string fn)
-		{
-			return Path.Combine(PLUGINDATA, fn);
-		}
-
 		public static bool FileExists (string filePath)
 		{
 			try {
-				FileInfo file = new FileInfo (ResolvePath(filePath));
-				return file.Exists;
+				return File<EditorExtensions>.Data.Exists(filePath);
 			} catch (Exception ex) {
 				Log.Error ("Failed to verify file " + filePath + " Error: " + ex.Message);
 				return false;
@@ -31,11 +22,9 @@ namespace EditorExtensionsRedux
 
 		public static bool SaveConfig (ConfigData configData, string fn)
 		{
-			if (!Directory.Exists(PLUGINDATA)) Directory.CreateDirectory(PLUGINDATA);
-			string configFilePath = ResolvePath(fn);
 			try {
 				XmlSerializer serializer = new XmlSerializer (typeof(ConfigData));
-				using (TextWriter writer = new StreamWriter (configFilePath)) {
+				using (SIO.TextWriter writer = StreamWriter.CreateForType<EditorExtensions>(fn)) {
 					serializer.Serialize (writer, configData); 
 				}
 				Log.Debug ("Saved config file");
@@ -48,13 +37,12 @@ namespace EditorExtensionsRedux
 
 		public static ConfigData LoadConfig (string fn)
 		{
-			string configFilePath = ResolvePath(fn);
 			try
 			{
 				XmlSerializer deserializer = new XmlSerializer (typeof(ConfigData));
 
 				ConfigData data;
-				using (TextReader reader = new StreamReader (configFilePath)) {
+				using (SIO.TextReader reader = StreamReader.CreateForType<EditorExtensions>(fn)) {
 					object obj = deserializer.Deserialize (reader);
 					data = (ConfigData)obj;
 				}
