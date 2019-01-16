@@ -513,7 +513,7 @@ namespace EditorExtensionsRedux
         const string DegreesSymbol = "\u00B0";
 
         EditorLogic editor;
-		readonly Version pluginVersion = Assembly.GetExecutingAssembly().GetName().Version;
+		readonly System.Version pluginVersion = Assembly.GetExecutingAssembly().GetName().Version;
         public ConfigData cfg;
         //int _symmetryMode = 0;
 
@@ -815,7 +815,7 @@ namespace EditorExtensionsRedux
                     else
                     {
                         //check config file version
-                        Version fileVersion = new Version();
+                        System.Version fileVersion = new System.Version();
 
                         if (cfg.FileVersion != null)
                         {
@@ -823,7 +823,7 @@ namespace EditorExtensionsRedux
 
                             try
                             {
-                                fileVersion = new Version(cfg.FileVersion);
+                                fileVersion = new System.Version(cfg.FileVersion);
                             }
                             catch (Exception ex)
                             {

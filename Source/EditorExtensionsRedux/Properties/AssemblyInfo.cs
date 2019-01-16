@@ -9,8 +9,8 @@ using System.Reflection;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: AssemblyVersion(EditorExtensionsRedux.PluginVersion.Number)]
-[assembly: AssemblyFileVersion(EditorExtensionsRedux.PluginVersion.Number)]
+[assembly: AssemblyVersion(EditorExtensionsRedux.Version.Number)]
+[assembly: AssemblyFileVersion(EditorExtensionsRedux.Version.Number)]
 
 [assembly: KSPAssemblyDependency("KSPe", 2, 1)]
 [assembly: KSPAssemblyDependency("ClickThroughBlocker", 1, 0)]

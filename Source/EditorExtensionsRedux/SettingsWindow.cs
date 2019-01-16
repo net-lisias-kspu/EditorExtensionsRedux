@@ -83,7 +83,7 @@ namespace EditorExtensionsRedux
 		/// <summary>
 		/// Initializes the window content and enables it
 		/// </summary>
-		public void Show (ConfigData config, string configFilePath, Version version)
+		public void Show (ConfigData config, string configFilePath, System.Version version)
 		{
 			Log.Debug ("SettingsWindow Show()");
 			_config = config;
