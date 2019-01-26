@@ -12,7 +12,7 @@ namespace EditorExtensionsRedux
 		{
 			logger.dbg(message);
 		}
-		[ConditionalAttribute("DEBUG")]
+		[Conditional("DEBUG")]
 		public static void Info(string message)
 		{
 			logger.info(message);
