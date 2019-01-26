@@ -104,9 +104,6 @@
     <Reference Include="Assembly-UnityScript-firstpass">
       <HintPath>..\..\..\..\..\..\LIB\managed\1.4.1\Assembly-UnityScript-firstpass.dll</HintPath>
     </Reference>
-    <Reference Include="ClickThroughBlocker">
-      <HintPath>..\..\..\..\..\..\LIB\plugins\ClickThroughBlocker.dll</HintPath>
-    </Reference>
     <Reference Include="KSPe">
       <HintPath>..\..\..\..\..\..\LIB\plugins\KSPe.dll</HintPath>
     </Reference>

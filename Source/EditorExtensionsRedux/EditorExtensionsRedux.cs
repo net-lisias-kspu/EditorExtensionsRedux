@@ -8,8 +8,6 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-using ClickThroughFix;
-
 /*
  * 
  * 
@@ -2326,7 +2324,7 @@ editor.angleSnapSprite.gameObject.SetActive (false);
                 Rect _menuRect = new Rect(Screen.width / 2f - (sizeOfWarningLabel.x / 2f), Screen.height / 2 - sizeOfWarningLabel.y,
                                      sizeOfWarningLabel.x, sizeOfWarningLabel.y * 2);
 
-                _menuRect = ClickThruBlocker.GUILayoutWindow(this.GetInstanceID(), _menuRect, ShowWarning, "EEX Menu");
+                _menuRect = GUILayout.Window(this.GetInstanceID(), _menuRect, ShowWarning, "EEX Menu");
                 return;
             }
             if (oldAllowTweakingWithoutTweakables != allowTweakingWithoutTweakables)
@@ -2341,7 +2339,7 @@ editor.angleSnapSprite.gameObject.SetActive (false);
             if (Event.current.type == EventType.Layout)
             {
                 if (_showMenu || _menuRect.Contains(Event.current.mousePosition) || (Time.fixedTime - lastTimeShown < 0.5f))
-                    _menuRect = ClickThruBlocker.GUILayoutWindow(this.GetInstanceID(), _menuRect, MenuContent, "EEX Menu");
+                    _menuRect = GUILayout.Window(this.GetInstanceID(), _menuRect, MenuContent, "EEX Menu");
                 else
                     _menuRect = new Rect();
             }

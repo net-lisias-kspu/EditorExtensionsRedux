@@ -1,8 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-using ClickThroughFix;
-
 namespace EditorExtensionsRedux
 {
     public class ShowAngleSnaps : MonoBehaviour
@@ -73,7 +71,7 @@ namespace EditorExtensionsRedux
             if (Event.current.type == EventType.Layout)
             {
                 //_windowRect.yMax = _windowRect.yMin;
-                _windowRect = ClickThruBlocker.GUILayoutWindow(this.GetInstanceID(), _windowRect, WindowContent, "ASnaps");
+                _windowRect = GUILayout.Window(this.GetInstanceID(), _windowRect, WindowContent, "ASnaps");
             }
         }
 
