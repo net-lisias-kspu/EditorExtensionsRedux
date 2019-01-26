@@ -10,6 +10,7 @@ Extensions for the KSP Editor. Unofficial fork by Lisias.
 * [Source](https://github.com/net-lisias-kspu/EditorExtensionsRedux)
 * Documentation
 	+ [Project's README](https://github.com/net-lisias-kspu/EditorExtensionsRedux/blob/master/README.md)
+	+ [Install Instructions](https://github.com/net-lisias-kspu/EditorExtensionsRedux/blob/master/INSTALL.md)
 	+ [Change Log](./CHANGE_LOG.md)
 	+ [TODO](./TODO.md) list
 
@@ -48,12 +49,7 @@ Space- When no part is selected, resets camera pitch and heading (straight ahead
 
 ## Installation
 
-In your KSP GameData folder, delete any existing EditorExtensions folder. Download the zip file to your KSP GameData folder and unzip.﻿
-
-### Dependencies
-
-* Hard Dependencies
-	+ [KSP API Extensions/L](https://github.com/net-lisias-ksp/KSPAPIExtensions) 2.0 or later
+Detailed installation instructions are now on its own file (see the [In a Hurry](#in-a-hurry) section) and on the distribution fi
 
 ### License:
 
