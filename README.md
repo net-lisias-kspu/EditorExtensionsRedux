@@ -8,7 +8,10 @@ Extensions for the KSP Editor. Unofficial fork by Lisias.
 * [Latest Release](https://github.com/net-lisias-kspu/EditorExtensionsRedux/releases)
 	+ [Binaries](https://github.com/net-lisias-kspu/EditorExtensionsRedux/tree/Archive)
 * [Source](https://github.com/net-lisias-kspu/EditorExtensionsRedux)
-* [Change Log](./CHANGE_LOG.md)
+* Documentation
+	+ [Project's README](https://github.com/net-lisias-kspu/EditorExtensionsRedux/blob/master/README.md)
+	+ [Change Log](./CHANGE_LOG.md)
+	+ [TODO](./TODO.md) list
 
 
 ## Description
@@ -16,7 +19,7 @@ Extensions for the KSP Editor. Unofficial fork by Lisias.
 * Features
 	+ Allows custom levels of radial symmetry beyond the stock limitations.
 	+ Horizontally and vertically center parts.
-	+ Adds radial/angle snapping at 1,5,15,22.5,30,45,60, and 90 degrees. Angles are customizable.
+	+ Adds radial/angle snapping at 1, 5, 15, 22.5, 30, 45, 60, and 90 degrees. Angles are customizable.
 	+ Toggle part clipping (From the cheat options)
 	+ Re-Align placed struts and fuel lines between parts 
 	+ Toggle radial and node attachment of parts
@@ -43,7 +46,7 @@ Extensions for the KSP Editor. Unofficial fork by Lisias.
 Space- When no part is selected, resets camera pitch and heading (straight ahead and level)
 
 
-## Instalation
+## Installation
 
 In your KSP GameData folder, delete any existing EditorExtensions folder. Download the zip file to your KSP GameData folder and unzip.﻿
 
