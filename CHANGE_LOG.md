@@ -3,6 +3,9 @@
 * 2019-0126: 3.3.19.11 (lisias) for KSP 1.4
 	+ Merging fixes from upstream
 		- Fixed issue when detaching a moving part in the editor (while it's snapping)
+* 2019-0126: 3.3.19.11 (lisias) for KSP 1.4
+	+ Merging fixes from upstream
+		- Fixed issue when detaching a moving part in the editor (while it's snapping)
 * 2018-1023: 3.3.19.10 (lisias) for KSP 1.4
 	+ Merging fixes from upstream
 		- fix flickering
