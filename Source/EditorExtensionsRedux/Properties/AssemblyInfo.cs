@@ -13,4 +13,3 @@ using System.Reflection;
 [assembly: AssemblyFileVersion(EditorExtensionsRedux.Version.Number)]
 
 [assembly: KSPAssemblyDependency("KSPe", 2, 1)]
-[assembly: KSPAssemblyDependency("ClickThroughBlocker", 1, 0)]
