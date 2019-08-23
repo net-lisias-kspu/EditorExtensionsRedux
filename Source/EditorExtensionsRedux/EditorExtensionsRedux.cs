@@ -834,7 +834,7 @@ namespace EditorExtensionsRedux
                     if (cfg == null)
                     {
                         //failed to load config, create new
-                        cfg = ConfigManager.CreateDefaultConfig(ConfigFileName, pluginVersion.ToString());
+                        cfg = ConfigManager.CreateDefaultConfig(ConfigFileName, "DefaultSnap", pluginVersion.ToString());
                     }
                     else
                     {
@@ -866,7 +866,7 @@ namespace EditorExtensionsRedux
                         if (versionMismatch)
                         {
                             Log.warn("Config file version mismatch, replacing with new defaults");
-                            cfg = ConfigManager.CreateDefaultConfig(ConfigFileName, pluginVersion.ToString());
+                            cfg = ConfigManager.CreateDefaultConfig(ConfigFileName, "DefaultSnap", pluginVersion.ToString());
                         }
                         else
                         {
@@ -877,7 +877,7 @@ namespace EditorExtensionsRedux
                 }
                 else
                 {
-                    cfg = ConfigManager.CreateDefaultConfig(ConfigFileName, pluginVersion.ToString());
+                    cfg = ConfigManager.CreateDefaultConfig(ConfigFileName, "DefaultSnap", pluginVersion.ToString());
                     Log.info("No existing config found, created new default config");
                 }
 

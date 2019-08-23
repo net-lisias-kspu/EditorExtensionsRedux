@@ -81,17 +81,38 @@ namespace EditorExtensionsRedux
 			}
 		}
 
+		static List<float> LoadDefaults(string nodeName)
+		{
+			List<float> snapValues = new List<float>();
+			if (!Data.ConfigNode.For(nodeName).IsLoadable)
+				return new List<float> { 0.0f, 1.0f, 5.0f, 15.0f, 22.5f, 30.0f, 45.0f, 60.0f, 90.0f };
+			ConfigNode fileNode = Data.ConfigNode.For(nodeName).Load().Node;
+			ConfigNode dataNode = fileNode.GetNode("EEX");
+
+			List<string> values = dataNode.GetValuesList("SnapValue");
+			foreach (var v in values) try
+			{
+				float f = float.Parse(v);
+				snapValues.Add(f);
+			}
+			catch (System.Exception e)
+			{
+				Log.error("LoadDefaults {0} E:{1}", nodeName, e.Message);
+			}
+			return snapValues;
+		}
+
 		/// <summary>
 		/// Creates a new config file with defaults
 		/// will replace any existing file
 		/// </summary>
 		/// <returns>New config object with default settings</returns>
-		public static ConfigData CreateDefaultConfig (string fn, string version)
+		public static ConfigData CreateDefaultConfig (string fn, string snapConfig, string version)
 		{
 			try
 			{
                 ConfigData defaultConfig = new ConfigData() {
-                    AngleSnapValues = new List<float> { 0.0f, 1.0f, 5.0f, 15.0f, 22.5f, 30.0f, 45.0f, 60.0f, 90.0f },
+                    AngleSnapValues = LoadDefaults(snapConfig),
                     MaxSymmetry = 20,
                     // Rapidzoom by Fwiffo 
                     RapidZoom = true,
