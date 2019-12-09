@@ -68,12 +68,14 @@ namespace EditorExtensionsRedux
 
         void Awake()
         {
-            Log.dbg("ShowAngleSnaps Awake()");
+            Log.trace("ShowAngleSnaps Awake()");
+            //start disabled
+            this.enabled = false;
         }
 
         void OnEnable()
         {
-            Log.dbg("ShowAngleSnaps OnEnable()");
+            Log.trace("ShowAngleSnaps OnEnable()");
 
             if (_config == null)
             {

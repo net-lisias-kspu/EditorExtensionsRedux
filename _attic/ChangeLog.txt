@@ -1,5 +1,14 @@
 ChangeLog
 
+3.4.0.3
+	Removed LineDrawer.cs since it was unused.  Untested
+	Moved "enabled = false" from cctor to Awake methods()
+
+3.4.0.2
+	Really did the MiniAVC update
+
+3.4.0.1
+	Updated MiniAVC.dll to 1.4.0.2 to fix a nasty CTD
 
 3.4.0
 	Updated for KSP 1.8

@@ -56,13 +56,13 @@ namespace EditorExtensionsRedux
 		//ctor
 		public SettingsWindow ()
 		{
-			//start disabled
-			this.enabled = false;
 		}
 
 		void Awake ()
 		{
-			Log.trace("SettingsWindow Awake()");
+			//start disabled
+			this.enabled = false;
+			Log.Debug ("SettingsWindow Awake()");
 		}
 
 		void Update ()

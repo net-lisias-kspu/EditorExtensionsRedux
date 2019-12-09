@@ -24,7 +24,7 @@
 
 */
 using UnityEngine;
-
+#if false
 namespace EditorExtensionsRedux
 {
 	public class LineDrawer : MonoBehaviour
@@ -79,3 +79,4 @@ namespace EditorExtensionsRedux
 	}
 }
 
+#endif

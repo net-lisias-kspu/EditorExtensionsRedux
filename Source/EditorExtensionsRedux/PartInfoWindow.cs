@@ -56,12 +56,12 @@ namespace EditorExtensionsRedux
 		//ctor
 		public PartInfoWindow ()
 		{
-			//start disabled
-			this.enabled = false;
+
 		}
-		#if false
 		void Awake ()
 		{
+			//start disabled
+			this.enabled = false;
 		}
 
 		void Update ()
@@ -71,7 +71,6 @@ namespace EditorExtensionsRedux
 		void OnEnable ()
 		{
 		}
-		#endif
 
 		void CloseWindow ()
 		{
