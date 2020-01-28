@@ -1933,7 +1933,9 @@ namespace EditorExtensionsRedux
             float x = 9999;
             foreach (var p in l)
                 x = Math.Min(x, p.transform.position.y);
-            float yDiff = 5 - x;
+            float height = (EditorDriver.editorFacility == EditorFacility.VAB) ?
+                HighLogic.CurrentGame.Parameters.CustomParams<EEX>().vabHeight : HighLogic.CurrentGame.Parameters.CustomParams<EEX>().sphHeight;
+            float yDiff = height - x;
 
             //move selected part
             CenterHorizontallyOnPoint(sp, yDiff);
@@ -2566,16 +2568,16 @@ editor.angleSnapSprite.gameObject.SetActive (false);
                     RefreshParts();
                     foreach (Part p in parts)
                     {
-                        if (!doNotMessWithAutoStrutModes.Contains(p.autoStrutMode)) try 
-						{
+                        if (!doNotMessWithAutoStrutModes.Contains(p.autoStrutMode)) try
+                        {
                             p.autoStrutMode = Part.AutoStrutMode.Grandparent;
                             p.ToggleAutoStrut();
                         }
-						catch(Exception e)
-						{
+                        catch(Exception e)
+                        {
                             p.autoStrutMode = Part.AutoStrutMode.Off;
-							Debug.LogException(e);
-						}
+                            Debug.LogException(e);
+                        }
                     }
                     OSDMessage("Autostruts turned OFF for all current Parts in Vessel (except forced).");
                 }
