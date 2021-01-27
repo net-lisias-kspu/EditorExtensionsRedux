@@ -62,7 +62,7 @@ namespace EditorExtensionsRedux
 		{
 			//start disabled
 			this.enabled = false;
-			Log.Debug ("SettingsWindow Awake()");
+			Log.dbg("SettingsWindow Awake()");
 		}
 
 		void Update ()
