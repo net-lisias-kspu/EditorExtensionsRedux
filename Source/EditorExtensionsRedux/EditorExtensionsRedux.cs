@@ -601,8 +601,6 @@ namespace EditorExtensionsRedux
 
         public static Constants c = new Constants();
 
-        public bool Visible { get; set; }
-
         public NoOffsetBehaviour.FreeOffsetBehaviour fob;
 
 #region member vars
@@ -2378,35 +2376,10 @@ editor.angleSnapSprite.gameObject.SetActive (false);
             //skin.customStyles = new GUIStyle[]{ osdLabel, symmetryLabel };
         }
 
-        //show the addon's GUI
-        public void Show()
-        {
-            if (!validVersion)
-                return;
-            this.Visible = true;
-            Log.trace("Show()");
-            //if (!_settingsWindow.enabled) {
-            //	_settingsWindow.Show (cfg, _configFilePath, pluginVersion);
-            //}
-        }
-
-        //hide the addon's GUI
-        public void Hide()
-        {
-            if (!validVersion)
-                return;
-            this.Visible = false;
-            //Log.Debug ("Hide()");
-            //if (_settingsWindow.enabled) {
-            //	_settingsWindow.enabled = false;
-            //}
-        }
-
         public void SettingsWindowClosed()
         {
             Log.trace("Settings window closed, reloading config");
             cfg = ConfigManager.LoadConfig(ConfigFileName);
-            Hide();
         }
 
         bool _showMenu = false;
@@ -2540,8 +2513,7 @@ editor.angleSnapSprite.gameObject.SetActive (false);
             GUILayout.BeginVertical();
             if (GUILayout.Button("Settings"))
             {
-				_settingsWindow.Show(cfg, Data.Solve(ConfigFileName), pluginVersion);
-                this.Visible = true;
+				_settingsWindow.Show(cfg, ConfigFileName, pluginVersion);
             }
 #if true
             if (cfg.FineAdjustEnabled)

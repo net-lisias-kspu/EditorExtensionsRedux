@@ -64,14 +64,16 @@ namespace EditorExtensionsRedux
 		private static Texture2D AppLauncherIcon;
 		private static Texture2D AppLauncherIconOn;
 		private static Texture2D AppLauncherIconOff;
+		private static Texture2D AppLauncherIconBright;
 
 		[UsedImplicitly]
 		private void Start ()
 		{
 			if (null == button) try {
-				if (null == AppLauncherIcon)	AppLauncherIcon = Asset.Texture2D.LoadFromFile("Textures", "AppLauncherIcon");
-				if (null == AppLauncherIconOn)	AppLauncherIconOn = Asset.Texture2D.LoadFromFile("Textures", "AppLauncherIcon-On");
-				if (null == AppLauncherIconOff)	AppLauncherIconOff = Asset.Texture2D.LoadFromFile("Textures", "AppLauncherIcon-Off");
+				if (null == AppLauncherIcon)		AppLauncherIcon		 = Asset.Texture2D.LoadFromFile("Textures", "AppLauncherIcon");
+				if (null == AppLauncherIconOn)		AppLauncherIconOn	 = Asset.Texture2D.LoadFromFile("Textures", "AppLauncherIcon-On");
+				if (null == AppLauncherIconOff)		AppLauncherIconOff	 = Asset.Texture2D.LoadFromFile("Textures", "AppLauncherIcon-Off");
+				if (null == AppLauncherIconBright)	AppLauncherIconBright= Asset.Texture2D.LoadFromFile("Textures", "AppLauncherIcon-Bright");
 
 				this.button = Toolbar.Button.Create(this
 						, ApplicationLauncher.AppScenes.VAB | ApplicationLauncher.AppScenes.SPH
@@ -81,18 +83,29 @@ namespace EditorExtensionsRedux
 				this.button.Add(
 						Toolbar.Button.ToolbarEvents.Kind.Active
 						, Toolbar.State.Data.Create(AppLauncherIconOn, AppLauncherIconOn)
-						, Toolbar.State.Data.Create(AppLauncherIconOn, AppLauncherIconOn)
+						, Toolbar.State.Data.Create(AppLauncherIcon, AppLauncherIcon)
+					);
+				this.button.Add(
+						Toolbar.Button.ToolbarEvents.Kind.Enabled
+						, Toolbar.State.Data.Create(AppLauncherIcon, AppLauncherIcon)
+						, Toolbar.State.Data.Create(AppLauncherIconOff, AppLauncherIconOff)
+					);
+				this.button.Add( // Okey, I'm showing off now. :)
+						Toolbar.Button.ToolbarEvents.Kind.Hover
+						, Toolbar.State.Data.Create(AppLauncherIconBright, AppLauncherIconBright)
+						, Toolbar.State.Data.Create(AppLauncherIcon, AppLauncherIcon)
 					);
 
 			// ATTENTION! Probable race condition: what happens if this MonoBehaviour is intantiated prior to EditorExtensions?
 				this.button.Toolbar.Add(
 						Toolbar.Button.ToolbarEvents.Kind.Active
-						, new Toolbar.Button.Event(EditorExtensions.Instance.Show, EditorExtensions.Instance.Hide)
-					);
-				this.button.Toolbar.Add(
-						Toolbar.Button.ToolbarEvents.Kind.Hover
 						, new Toolbar.Button.Event(EditorExtensions.Instance.ShowMenu, EditorExtensions.Instance.HideMenu)
 					);
+				// I have activating the menu on hovering!!!
+				//this.button.Toolbar.Add(
+				//		Toolbar.Button.ToolbarEvents.Kind.Hover
+				//		, new Toolbar.Button.Event(EditorExtensions.Instance.ShowMenu, EditorExtensions.Instance.HideMenu)
+				//	);
 			// /ATTENTION
 
 				ToolbarController.Instance.Add(this.button);

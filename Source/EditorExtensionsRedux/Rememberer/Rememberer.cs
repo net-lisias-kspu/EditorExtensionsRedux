@@ -32,12 +32,9 @@ namespace Rememberer
             {
                 if (modIdent == a.name)
                     return true;
-
             }
             return false;
         }
-
-
 
         public void Start()
         {
@@ -54,11 +51,11 @@ namespace Rememberer
                 }
 
                 // Imports initial sort settings from config file into a default "root" Config Node
-                nodeFile = CONFIG.Load().Node;
-                if (nodeFile != null)
+                if (CONFIG.IsLoadable) CONFIG.Load(); else CONFIG.Clear();
+                nodeFile = CONFIG.Node;
                 {
-                    sortAsc = Convert.ToBoolean(nodeFile.GetValue(SORTASC_NAME));  // true: ascending, false: descending
-                    sortIndex = Convert.ToInt32(nodeFile.GetValue(SORTINDEX_NAME));  // 0: mame, 1: mass, 2: cost, 3: size
+                    if(!nodeFile.TryGetValue(SORTASC_NAME, ref sortAsc))        sortAsc = true; // true: ascending, false: descending
+                    if(!nodeFile.TryGetValue(SORTINDEX_NAME, ref sortIndex))    sortIndex = 0;  // 0: mame, 1: mass, 2: cost, 3: size
                 }
             }
             // set initial sort method
