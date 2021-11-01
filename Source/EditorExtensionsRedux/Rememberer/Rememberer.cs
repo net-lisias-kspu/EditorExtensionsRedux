@@ -2,6 +2,8 @@
 using UnityEngine;
 using KSP.UI.Screens; // has EditorPartList
 
+using Data = KSPe.IO.Data<EditorExtensionsRedux.Startup>;
+
 namespace Rememberer
 {
 
@@ -20,7 +22,7 @@ namespace Rememberer
             sortAsc = asc;
         }
 
-        const string FILE = "GameData/EditorExtensionsRedux/PluginData/RememEditor.cfg";
+        private readonly Data.ConfigNode CONFIG = Data.ConfigNode.For("RememEditor");
         const string SORTASC_NAME = "partListSortAsc";
         const string SORTINDEX_NAME = "partListSortIndex";
 
@@ -52,7 +54,7 @@ namespace Rememberer
                 }
 
                 // Imports initial sort settings from config file into a default "root" Config Node
-                nodeFile = ConfigNode.Load(KSPUtil.ApplicationRootPath + FILE);
+                nodeFile = CONFIG.Load().Node;
                 if (nodeFile != null)
                 {
                     sortAsc = Convert.ToBoolean(nodeFile.GetValue(SORTASC_NAME));  // true: ascending, false: descending
@@ -75,7 +77,7 @@ namespace Rememberer
 
             nodeFile.SetValue(SORTASC_NAME, sortAsc.ToString(), true);
             nodeFile.SetValue(SORTINDEX_NAME, sortIndex.ToString(), true);
-            nodeFile.Save(KSPUtil.ApplicationRootPath + FILE);
+            CONFIG.Save(nodeFile);
 
             //EditorPartList is already disabled when OnDisable is called so remove callback gives NRE
             //EditorPartList.Instance.partListSorter.RemoveOnSortCallback(SortCB);
