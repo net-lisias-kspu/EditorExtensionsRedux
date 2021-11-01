@@ -62,7 +62,7 @@ namespace EditorExtensionsRedux
 
 		void Awake ()
 		{
-			Log.Debug ("SettingsWindow Awake()");
+			Log.trace("SettingsWindow Awake()");
 		}
 
 		void Update ()
@@ -74,7 +74,7 @@ namespace EditorExtensionsRedux
 
 		void OnEnable ()
 		{
-			Log.Debug ("SettingsWindow OnEnable()");
+			Log.trace("SettingsWindow OnEnable()");
 
 			if (_config == null || string.IsNullOrEmpty (_configFilePath)) {
 				this.enabled = false;
@@ -108,7 +108,7 @@ namespace EditorExtensionsRedux
 		/// </summary>
 		public void Show (ConfigData config, string configFilePath, System.Version version)
 		{
-			Log.Debug ("SettingsWindow Show()");
+			Log.trace("SettingsWindow Show()");
 			_config = config;
 			_configFilePath = configFilePath;
 			_windowTitle = string.Format ("Editor Extensions v{0}.{1}", version.Major.ToString (), version.Minor.ToString ());
@@ -489,7 +489,7 @@ namespace EditorExtensionsRedux
 				catch (Exception ex) {
 					//potential for some intermittent locking/threading issues here	
 					//Debug only to avoid log spam
-					Log.Error ("Error updating AngleSnapValues: " + ex.Message);
+					Log.error("Error updating AngleSnapValues: {0}", ex.Message);
 				}
 #else
 				catch(Exception){

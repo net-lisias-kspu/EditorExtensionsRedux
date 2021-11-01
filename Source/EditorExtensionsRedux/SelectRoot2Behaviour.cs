@@ -150,7 +150,7 @@ namespace EditorExtensionsRedux {
 			SelectRootInjectEvent(st_place, dropNewRootPartEvent);
 				
 
-			Log.Info("Setup complete..");
+			Log.trace("Setup complete..");
 		}
 #if false
         private Part GetPartUnderCursor() {
@@ -170,7 +170,7 @@ namespace EditorExtensionsRedux {
 //				((List<KFSMEvent>)Refl.GetValue(state, "stateEvents")).Remove(injectedEvent);
 //				List<KFSMState> kfsmstatelist = (List<KFSMState>)Refl.GetValue(state, EditorExtensions.c.GET_STATEEVENTS);
                 state.StateEvents.Remove(injectedEvent);
-                Log.Info("Removed event " + injectedEvent.name + " from state " + state.name);
+                Log.dbg("Removed event {0} from state {1}", injectedEvent.name, state.name);
 #if false
 				foreach(var kfsmstate in kfsmstatelist)
 				{
@@ -186,15 +186,15 @@ namespace EditorExtensionsRedux {
 
 
             };
-			Log.Info("Injected event " + injectedEvent.name + " into state " + state.name);
+			Log.dbg("Injected event {0} into state {1}", injectedEvent.name, state.name);
 		}
 
 		public void DisableSelectRoot() {
 			if (!validVersion)
 				return;
-			Log.Info("SelectRoot OnDestroy");
+			Log.trace("SelectRoot OnDestroy");
 		    OnCleanup();
-			Log.Info("Cleanup complete.");
+			Log.dbg("Cleanup complete.");
 		}
 	}
 

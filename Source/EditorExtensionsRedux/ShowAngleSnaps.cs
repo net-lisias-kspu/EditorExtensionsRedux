@@ -68,12 +68,12 @@ namespace EditorExtensionsRedux
 
         void Awake()
         {
-            Log.Debug("ShowAngleSnaps Awake()");
+            Log.dbg("ShowAngleSnaps Awake()");
         }
 
         void OnEnable()
         {
-            Log.Debug("ShowAngleSnaps OnEnable()");
+            Log.dbg("ShowAngleSnaps OnEnable()");
 
             if (_config == null)
             {
@@ -109,7 +109,7 @@ namespace EditorExtensionsRedux
         /// </summary>
         public void Show(ConfigData config)
         {
-            Log.Debug("ShowAngleSnaps Show()");
+            Log.trace("ShowAngleSnaps Show()");
             _config = config;
 
             this.enabled = true;
@@ -156,7 +156,7 @@ namespace EditorExtensionsRedux
             {
                 //potential for some intermittent locking/threading issues here	
                 //Debug only to avoid log spam
-                Log.Error("Error updating AngleSnapValues: " + ex.Message);
+                Log.error("Error updating AngleSnapValues: {0}" + ex.Message);
             }
 #else
 				catch(Exception){

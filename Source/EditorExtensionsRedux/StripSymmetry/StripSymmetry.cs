@@ -64,7 +64,7 @@ namespace EditorExtensionsRedux.StripSymmetry
 				stripIsActive = false;
 				return;
 			}
-			Log.Info ("Trying to strip symmetry  stripIsActive:" + stripIsActive.ToString());
+			Log.trace("Trying to strip symmetry  stripIsActive: {0}", stripIsActive);
 //            if (!_hotkey.IsTriggered)
   //              return;
 

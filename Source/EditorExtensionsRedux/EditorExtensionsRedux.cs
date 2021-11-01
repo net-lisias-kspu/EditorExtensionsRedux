@@ -504,7 +504,7 @@ namespace EditorExtensionsRedux
                     UPDATESYMMETRY == -1 ||
                     ONOFFSETGIZMOUPDATED == -1)
                 {
-                    Log.Error("Missing values in Reflection");
+                    Log.error("Missing values in Reflection");
                     return false;
                 }
                 return true;
@@ -575,8 +575,8 @@ namespace EditorExtensionsRedux
         //Unity initialization call, called first
         public void Awake()
         {
-            Log.Debug("Awake()");
-            Log.Debug("launchSiteName: " + EditorLogic.fetch.launchSiteName);
+            Log.trace("Awake()");
+            Log.detail("launchSiteName: {0}", EditorLogic.fetch.launchSiteName);
         }
 
 #if DEBUG
@@ -621,7 +621,7 @@ namespace EditorExtensionsRedux
             int c = 0;
             foreach (FieldInfo FI in el.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {
-                Log.Info("EditorLogic Field name[" + c.ToString() + "]: " + FI.Name + "    Fieldtype: " + FI.FieldType.ToString());
+                Log.detail("EditorLogic Field name[{0}]: {1}    Fieldtype: {2}", c, FI.Name, FI.FieldType);
                 c++;
             }
 
@@ -629,7 +629,7 @@ namespace EditorExtensionsRedux
             c = 0;
             foreach (FieldInfo FI in ke.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {
-                Log.Info("KFSMEvent KFSMEvent Field name[" + c.ToString() + "]: " + FI.Name + "    Fieldtype: " + FI.FieldType.ToString());
+                Log.detail("KFSMEvent KFSMEvent Field name[{0}]: {1}    Fieldtype: {2}", c, FI.Name, FI.FieldType);
                 c++;
             }
 
@@ -637,7 +637,7 @@ namespace EditorExtensionsRedux
             c = 0;
             foreach (MethodInfo FI in leMethods)
             {
-                Log.Info("MethodInfo  EditorLogic methods name[" + c.ToString() + "]: " + FI.Name);
+                Log.detail("MethodInfo  EditorLogic methods name[{0}]: {1}", c, FI.Name);
                 c++;
             }
 
@@ -645,7 +645,7 @@ namespace EditorExtensionsRedux
             c = 0;
             foreach (MethodInfo FI in parts)
             {
-                Log.Info("MethodInfo  Part  name[" + c.ToString() + "]: " + FI.Name);
+                Log.detail("MethodInfo  Part  name[{0}]: {1}", c, FI.Name);
                 c++;
             }
 
@@ -654,7 +654,7 @@ namespace EditorExtensionsRedux
             c = 0;
             foreach (MethodInfo FI in cparts)
             {
-                Log.Info("MethodInfo  CompoundPart  name[" + c.ToString() + "]: " + FI.Name);
+                Log.detail("MethodInfo  CompoundPart  name[{0}]: {1}", c, FI.Name);
                 c++;
             }
 
@@ -662,7 +662,7 @@ namespace EditorExtensionsRedux
             c = 0;
             foreach (MethodInfo FI in kfe)
             {
-                Log.Info("MethodInfo KFSMEvent  methods name[" + c.ToString() + "]: " + FI.Name);
+                Log.detail("MethodInfo  KFSMEvent  methods name[{0}]: {1}", c, FI.Name);
                 c++;
             }
 
@@ -671,7 +671,7 @@ namespace EditorExtensionsRedux
             c = 0;
             foreach (MethodInfo FI in ks)
             {
-                Log.Info("MethodInfo KFSMState  methods name[" + c.ToString() + "]: " + FI.Name + "   " + FI.ToString());
+                Log.detail("MethodInfo KFSMState  methods name[{0}]: {1}    Fieldtype: {2}", c, FI.Name, FI);
                 c++;
             }
 
@@ -688,8 +688,7 @@ namespace EditorExtensionsRedux
         //Unity, called after Awake()
         public void Start()
         {
-            Log.Debug("Start()");
-            Log.Debug("Version: " + Versioning.Revision);
+            Log.trace("Start()");
             //Boop: Nuke the editor hotkeys so we can hijack them.
             GameSettings.Editor_toggleSymMode.primary = new KeyCodeExtended(KeyCode.None);
             GameSettings.Editor_toggleSymMode.secondary = new KeyCodeExtended(KeyCode.None);
@@ -717,14 +716,14 @@ namespace EditorExtensionsRedux
             //			editor.srfAttachAngleSnap = 0;
             editor.srfAttachAngleSnap = lastSrfAttachAngleSnap;
             GameSettings.VAB_USE_ANGLE_SNAP = last_VAB_USE_ANGLE_SNAP;
-            Log.Info("editor.srfAttachAngleSnap: " + editor.srfAttachAngleSnap.ToString());
+            Log.detail("editor.srfAttachAngleSnap: {0}", editor.srfAttachAngleSnap);
 
         }
 
         //Unity OnDestroy
         void OnDestroy()
         {
-            Log.Debug("OnDestroy()");
+            Log.trace("OnDestroy()");
             //if (_settingsWindow != null)
             //	_settingsWindow.enabled = false;
             //if (_partInfoWindow != null)
@@ -745,12 +744,12 @@ namespace EditorExtensionsRedux
         ConstructionEventType lastEventType = ConstructionEventType.Unknown;
         void EditorPartEvent(ConstructionEventType eventType, Part part)
         {
-            Log.Info("EditorPartEvent  eventType: " + eventType.ToString());
+            Log.trace("EditorPartEvent  eventType: {0}", eventType);
             lastEventType = eventType;
             if (eventType == ConstructionEventType.PartRotating)
             {
-                Log.Info("eulerAngles attRotation: " + part.attRotation.eulerAngles);
-                Log.Info("eulerAngles attRotation0: " + part.attRotation0.eulerAngles);
+                Log.dbg("eulerAngles attRotation: {0}", part.attRotation.eulerAngles);
+                Log.dbg("eulerAngles attRotation0: {0}", part.attRotation0.eulerAngles);
                 updateGizmoSnaps();
                 return;
                 //	  UpdateRotationGizmos(); // RK
@@ -766,18 +765,18 @@ namespace EditorExtensionsRedux
                 return;
             }
 
-            Log.Debug(string.Format("EditorPartEvent {0} part {1}", eventType, part));
+            Log.dbg(string.Format("EditorPartEvent {0} part {1}", eventType, part));
 
             if (eventType == ConstructionEventType.PartAttached)
             {
                 if (part.parent != null)
                 {
-                    Log.Debug("Part parent: " + part.parent.name);
-                    Log.Debug("Node attached: " + IsPartNodeAttached(part).ToString());
+                    Log.dbg("Part parent: {0}", part.parent.name);
+                    Log.dbg("Node attached: {0}", IsPartNodeAttached(part));
                 }
                 else
                 {
-                    Log.Debug("Part parent is null");
+                    Log.dbg("Part parent is null");
                 }
             }
         }
@@ -809,7 +808,7 @@ namespace EditorExtensionsRedux
 #endif
         void EditorSymmetryModeChange(int symMode)
         {
-            Log.Debug("EditorSymmetryModeChange: " + symMode.ToString());
+            Log.dbg("EditorSymmetryModeChange: {0}", symMode);
         }
 
         void InitConfig()
@@ -821,7 +820,7 @@ namespace EditorExtensionsRedux
                 return;
             }
 
-            Log.Info("EditorExtensionsRedux.InitConfig");
+            Log.trace("EditorExtensionsRedux.InitConfig");
             try
             {
 				//check if the config file is there and create if its missing
@@ -842,7 +841,7 @@ namespace EditorExtensionsRedux
 
                         if (cfg.FileVersion != null)
                         {
-                            Log.Debug("Config v" + cfg.FileVersion + " Mod v" + pluginVersion.ToString());
+                            Log.dbg("Config v{0} Mod v{1}", cfg.FileVersion, pluginVersion);
 
                             try
                             {
@@ -850,7 +849,7 @@ namespace EditorExtensionsRedux
                             }
                             catch (Exception ex)
                             {
-                                Log.Error("Error parsing version from config file: " + ex.Message);
+                                Log.error("Error parsing version from config file: {0}", ex.Message);
                             }
                         }
 
@@ -864,12 +863,12 @@ namespace EditorExtensionsRedux
 
                         if (versionMismatch)
                         {
-                            Log.Info("Config file version mismatch, replacing with new defaults");
+                            Log.warn("Config file version mismatch, replacing with new defaults");
                             cfg = ConfigManager.CreateDefaultConfig(ConfigFileName, pluginVersion.ToString());
                         }
                         else
                         {
-                            Log.Debug("Config file is current");
+                            Log.dbg("Config file is current");
                         }
                     }
 
@@ -877,7 +876,7 @@ namespace EditorExtensionsRedux
                 else
                 {
                     cfg = ConfigManager.CreateDefaultConfig(ConfigFileName, pluginVersion.ToString());
-                    Log.Info("No existing config found, created new default config");
+                    Log.info("No existing config found, created new default config");
                 }
 
                 ReRootActive = cfg.ReRootEnabled;
@@ -888,12 +887,10 @@ namespace EditorExtensionsRedux
                     OSDMessage(string.Format("Reroot is active"));
                     EnableSelectRoot();
                 }
-
-                Log.Debug("Initializing version " + pluginVersion.ToString());
             }
             catch (Exception ex)
             {
-                Log.Debug("FATAL ERROR - Unable to initialize: " + ex.Message);
+                Log.error("FATAL ERROR - Unable to initialize: {0}", ex.Message);
                 //_abort = true;
                 return;
             }
@@ -1162,7 +1159,7 @@ namespace EditorExtensionsRedux
                     if (Input.GetKeyDown(cfg.KeyMap.ToggleReRoot))
                     {
                         ReRootActive = !ReRootActive;
-                        Log.Info("ToggleReRoot, ReRootActive: " + ReRootActive.ToString());
+                        Log.detail("ToggleReRoot, ReRootActive: {0}", ReRootActive);
                         if (ReRootActive)
                         {
                             OSDMessage(string.Format("Reroot is active"));
@@ -1181,7 +1178,7 @@ namespace EditorExtensionsRedux
                     if (Input.GetKeyDown(cfg.KeyMap.ToggleNoOffsetLimit))
                     {
                         NoOffsetLimit = !NoOffsetLimit;
-                        Log.Info("ToggleNoOffsetLimit, NoOffsetLimit: " + NoOffsetLimit.ToString());
+                        Log.detail("ToggleNoOffsetLimit, NoOffsetLimit: {0}", NoOffsetLimit);
                         if (NoOffsetLimit)
                         {
                             OSDMessage(string.Format("No Offset Limit is active"));
@@ -1301,8 +1298,8 @@ namespace EditorExtensionsRedux
 
                             float offset = FineAdjustWindow.Instance.offset;
 
-                            Log.Info("\nmoving part:  EditorLogic.SelectedPart.attPos: " + EditorLogic.SelectedPart.attPos);
-                            Log.Info("moving part:  EditorLogic.SelectedPart.attPos0: " + EditorLogic.SelectedPart.attPos0);
+                            Log.detail("\nmoving part:  EditorLogic.SelectedPart.attPos: {0}", EditorLogic.SelectedPart.attPos);
+                            Log.detail("moving part:  EditorLogic.SelectedPart.attPos0: {0}", EditorLogic.SelectedPart.attPos0);
                             /*
 					 * From WASD:
 
@@ -1505,7 +1502,7 @@ namespace EditorExtensionsRedux
             {
                 if (n.attachedPart == p.parent)
                 {
-                    Log.Debug(string.Format("Part {0} is attached via node on parent {1}", p.name, p.parent.name));
+                    Log.dbg("Part {0} is attached via node on parent {1}", p.name, p.parent.name);
                     return true;
                 }
             }
@@ -1554,7 +1551,7 @@ namespace EditorExtensionsRedux
         {
             if (p.parent != null)
             {
-                Log.Debug(string.Format("Positioning {0} vertically on parent {1}", p.name, p.parent.name));
+                Log.dbg("Positioning {0} vertically on parent {1}", p.name, p.parent.name);
                 if (partMovementContains(p))
                     return;
                 PartMovement pm = new PartMovement();
@@ -1730,8 +1727,8 @@ namespace EditorExtensionsRedux
                     r *= Quaternion.Euler(Vector3.forward * amt);
                     break;
             }
-            Log.Info("RotatePart  attRotation0: " + p.attRotation0.eulerAngles);
-            Log.Info("RotatePart  r: " + r.eulerAngles);
+            Log.detail("RotatePart  attRotation0: {0}" + p.attRotation0.eulerAngles);
+            Log.detail("RotatePart  r: {0}" + r.eulerAngles);
             //p.orgRot = r;
             p.transform.localRotation = r;
         }
@@ -1818,17 +1815,17 @@ namespace EditorExtensionsRedux
 
         void VerticalAlign()
         {
-            Log.Info("VerticalAlign");
+            Log.trace("VerticalAlign");
             try
             {
                 Part sp = Utility.GetPartUnderCursor();
-                Log.Info("sp: " + sp.partInfo.title);
+                Log.detail("sp: {0}", sp.partInfo.title);
                 if (sp != null && sp.srfAttachNode != null && sp.srfAttachNode.attachedPart != null && !GizmoActive() && !IsPartNodeAttached(sp))
                 {
 
                     if (masterSnapPart == null)
                     {
-                        Log.Info("CenterVerticallyOnParent: " + sp.partInfo.title);
+                        Log.detail("CenterVerticallyOnParent: {0}", sp.partInfo.title);
                         //move hovered part
                         CenterVerticallyOnParent(sp);
 
@@ -1853,7 +1850,7 @@ namespace EditorExtensionsRedux
             }
             catch (Exception ex)
             {
-                Log.Error("Error trying to vertically align: " + ex.Message);
+                Log.error("Error trying to vertically align: {0}", ex.Message);
             }
 
             return;
@@ -1897,7 +1894,7 @@ namespace EditorExtensionsRedux
             }
             catch (Exception ex)
             {
-                Log.Error("Error trying to Horizontally align: " + ex.Message);
+                Log.error("Error trying to Horizontally align: {0}", ex.Message);
             }
             return;
         }
@@ -1955,7 +1952,7 @@ namespace EditorExtensionsRedux
                 //Toggle surface attachment for selected part
                 EditorLogic.SelectedPart.attachRules.srfAttach ^= true;
 
-                Log.Debug("Toggling srfAttach for " + EditorLogic.SelectedPart.name);
+                Log.dbg("Toggling srfAttach for {0}", EditorLogic.SelectedPart.name);
                 OSDMessage(String.Format("Surface attachment {0} for {1}"
                     , EditorLogic.SelectedPart.attachRules.srfAttach ? "enabled" : "disabled"
                     , EditorLogic.SelectedPart.name
@@ -1967,8 +1964,9 @@ namespace EditorExtensionsRedux
         void PartClippingToggle()
         {
             CheatOptions.AllowPartClipping ^= true;
-            Log.Debug("AllowPartClipping " + (CheatOptions.AllowPartClipping ? "enabled" : "disabled"));
-            OSDMessage("Part clipping " + (CheatOptions.AllowPartClipping ? "enabled" : "disabled"));
+            string opt = (CheatOptions.AllowPartClipping ? "enabled" : "disabled");
+            Log.dbg("AllowPartClipping {0}", opt);
+            OSDMessage(string.Format("Part clipping {0}", opt));
             return;
         }
 
@@ -2034,7 +2032,7 @@ namespace EditorExtensionsRedux
                 var fields = gizmoRotate.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                 foreach (var f in fields)
                 {
-                    Log.Info("EditorLogic Gizmo Rotate Field name[" + cnt.ToString() + "]: " + f.Name + "    Fieldtype: " + f.GetValue(gizmoRotate).ToString());
+                    Log.detail("EditorLogic Gizmo Rotate Field name[{0}]: {1}    Fieldtype: {2}", cnt, f.Name, f.GetValue(gizmoRotate));
                     cnt++;
 
                     // Debug.Log(String.Format("{0}: {1}", f.Name, f.GetValue(gizmo).ToString()));
@@ -2045,9 +2043,8 @@ namespace EditorExtensionsRedux
                 cnt = 0;
                 foreach (MethodInfo EG in egMethods)
                 {
-                    Log.Info("EditorLogic Gizmo Rotate methods name[" + cnt.ToString() + "]: " + EG.Name + "   " + EG.ReturnType.ToString());
+                    Log.detail("EditorLogic Gizmo Rotate methods name[{0}]: {1}   {2}", cnt, EG.Name, EG.ReturnType);
                     cnt++;
-
                 }
 
             }
@@ -2191,7 +2188,7 @@ editor.angleSnapSprite.gameObject.SetActive (false);
             }
             catch (Exception ex)
             {
-                Log.Error("Error getting active Gizmos: " + ex.Message);
+                Log.error("Error getting active Gizmos: {0}", ex.Message);
 #else
             }
             catch (Exception)
@@ -2258,7 +2255,7 @@ editor.angleSnapSprite.gameObject.SetActive (false);
             if (!validVersion)
                 return;
             this.Visible = true;
-            Log.Debug("Show()");
+            Log.trace("Show()");
             //if (!_settingsWindow.enabled) {
             //	_settingsWindow.Show (cfg, _configFilePath, pluginVersion);
             //}
@@ -2278,7 +2275,7 @@ editor.angleSnapSprite.gameObject.SetActive (false);
 
         public void SettingsWindowClosed()
         {
-            Log.Debug("Settings window closed, reloading config");
+            Log.trace("Settings window closed, reloading config");
             cfg = ConfigManager.LoadConfig(ConfigFileName);
             Hide();
         }

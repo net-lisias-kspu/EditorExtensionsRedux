@@ -40,7 +40,7 @@ namespace EditorExtensionsRedux.NoOffsetBehaviour
                 return;
 
             //log = new Log(this.GetType().Name);
-            Log.Debug("FreeOffsetBehaviour.Start");
+            Log.trace("FreeOffsetBehaviour.Start");
 
             //			var st_offset_tweak = (KFSMState)Refl.GetValue(EditorLogic.fetch, "st_offset_tweak");
             var st_offset_tweak = (KFSMState)Refl.GetValue(EditorLogic.fetch, EditorExtensions.c.ST_OFFSET_TWEAK);
@@ -94,7 +94,7 @@ namespace EditorExtensionsRedux.NoOffsetBehaviour
                         p.transform.position = gizmoOffset.transform.position;
                         p.attPos = p.transform.localPosition - p.attPos0;
 
-                        Log.Info("symCount: " + symCount.ToString());
+                        Log.detail("symCount: {0}", symCount);
                         if (symCount != 0)
                         {
                             //	Refl.Invoke(EditorLogic.fetch, "UpdateSymmetry", p, symCount, parent, symUpdateAttachNode);
@@ -121,7 +121,7 @@ namespace EditorExtensionsRedux.NoOffsetBehaviour
             {
                 st_offset_tweak.OnEnter -= hookOffsetUpdateFn;
             };
-            Log.Debug("Installed.");
+            Log.dbg("Installed.");
         }
 
         void Update()
@@ -166,9 +166,9 @@ namespace EditorExtensionsRedux.NoOffsetBehaviour
 
         public void OnDestroy()
         {
-            Log.Debug("FreeOffsetBehaviour.OnDestroy");
+            Log.trace("FreeOffsetBehaviour.OnDestroy");
             if (OnCleanup != null) OnCleanup();
-            Log.Debug("Cleanup complete.");
+            Log.dbg("Cleanup complete.");
         }
     }
 }

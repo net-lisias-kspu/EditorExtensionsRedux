@@ -40,7 +40,7 @@ namespace EditorExtensionsRedux
 			try {
 				return File<EditorExtensions>.Data.Exists(filePath);
 			} catch (Exception ex) {
-				Log.Error ("Failed to verify file " + filePath + " Error: " + ex.Message);
+				Log.error("Failed to verify file {0} Error: {1}", filePath, ex.Message);
 				return false;
 			}
 		}
@@ -52,10 +52,10 @@ namespace EditorExtensionsRedux
 				using (SIO.TextWriter writer = StreamWriter.CreateForType<EditorExtensions>(fn)) {
 					serializer.Serialize (writer, configData); 
 				}
-				Log.Debug ("Saved config file");
+				Log.trace("Saved config file");
 				return true;
 			} catch (Exception ex) {
-				Log.Error ("Error saving config file: " + ex.Message);
+				Log.error("Error saving config file: {0}", ex.Message);
 				return false;
 			}
 		}
@@ -76,7 +76,7 @@ namespace EditorExtensionsRedux
 
 				return data;
 			} catch (Exception ex) {
-				Log.Error ("Error loading config file: " + ex.Message);
+				Log.error("Error loading config file: {0}", ex.Message);
 				return null;
 			}
 		}
@@ -130,13 +130,13 @@ namespace EditorExtensionsRedux
 				defaultConfig.KeyMap = defaultKeys;
 
 				if (ConfigManager.SaveConfig (defaultConfig, fn))
-					Log.Debug ("Created default config");
+					Log.detail("Created default config");
 				else
-					Log.Error ("Failed to save default config");
+					Log.error("Failed to save default config");
 
 				return defaultConfig;
 			} catch (Exception ex) {
-				Log.Error ("Error defaulting config: " + ex.Message);
+				Log.error("Error defaulting config: {0}", ex.Message);
 				return null;
 			}
 		}

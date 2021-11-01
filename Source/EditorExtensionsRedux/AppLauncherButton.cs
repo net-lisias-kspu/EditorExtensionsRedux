@@ -66,7 +66,7 @@ namespace EditorExtensionsRedux
 
 		private void ButtonState (bool state)
 		{
-			Log.Debug ("ApplicationLauncher on" + state.ToString ());
+			Log.dbg("ApplicationLauncher on {0}", state);
 			EditorExtensions.Instance.Visible = state;
 		}
 		
@@ -112,19 +112,19 @@ namespace EditorExtensionsRedux
                     }
                     catch (Exception ex)
                     {
-                        Log.Error("Failed to load the texture:" + path);
-                        Log.Error(ex.Message);
+                        Log.error("Failed to load the texture: {0}", path);
+                        Log.error(ex.Message);
                     }
                 }
                 else
                 {
-                    Log.Error("Cannot find texture to load:" + fileNamePath);
+                    Log.error("Cannot find texture to load: {0}", fileNamePath);
                 }
             }
             catch (Exception ex)
             {
-                Log.Error("Failed to load (are you missing a file):" + fileNamePath);
-                Log.Error(ex.Message);
+                Log.error("Failed to load (are you missing a file): {0}", fileNamePath);
+                Log.error(ex.Message);
             }
             return blnReturn;
         }
@@ -133,7 +133,7 @@ namespace EditorExtensionsRedux
         {
             Texture2D tex = new Texture2D(16, 16, TextureFormat.ARGB32, false);
 			if (!LoadImageFromFile(ref tex, path))
-				Log.Error("Failed to load tex " + path);
+				Log.error("Failed to load tex {0}", path);
             return tex;
         }
         
@@ -163,9 +163,9 @@ namespace EditorExtensionsRedux
 						ApplicationLauncher.AppScenes.VAB | ApplicationLauncher.AppScenes.SPH, //visibleInScenes
 						GetTexture (texPathDefault, false) //texture
 					);
-					Log.Debug ("Added ApplicationLauncher button");
+					Log.dbg("Added ApplicationLauncher button");
 				} catch (Exception ex) {
-					Log.Error ("Error adding ApplicationLauncher button: " + ex.Message);
+					Log.error("Error adding ApplicationLauncher button: {0}", ex.Message);
 				}
 			}
 
@@ -198,7 +198,7 @@ namespace EditorExtensionsRedux
 					this.button.Disable ();
 				}
 			} catch (Exception ex) {
-				Log.Error ("Error updating ApplicationLauncher button: " + ex.Message);
+				Log.error("Error updating ApplicationLauncher button: {0}" + ex.Message);
 			}
 		}
 	}

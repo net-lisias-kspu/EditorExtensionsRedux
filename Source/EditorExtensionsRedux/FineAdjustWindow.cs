@@ -45,7 +45,7 @@ namespace EditorExtensionsRedux
 
 		void Awake ()
 		{
-			Log.Debug ("FineAdjustWindow Awake()");
+			Log.trace("FineAdjustWindow Awake()");
 			this.enabled = false;
 			Instance = this;
 		}
@@ -57,7 +57,7 @@ namespace EditorExtensionsRedux
 
 		void OnEnable ()
 		{
-			Log.Debug ("FineAdjustWindow OnEnable()");
+			Log.trace("FineAdjustWindow OnEnable()");
 		
 		}
 
@@ -69,7 +69,7 @@ namespace EditorExtensionsRedux
 		void CloseWindow ()
 		{
 			this.enabled = false;
-			Log.Info ("CloseWindow enabled: " + this.enabled.ToString ());
+			Log.trace("CloseWindow enabled: {0}", this.enabled);
 		}
 
 		void OnDisable ()
@@ -267,7 +267,7 @@ namespace EditorExtensionsRedux
 
 			GUILayout.BeginHorizontal ();
 			if (GUILayout.Button ("Done")) {
-				Log.Info ("Done");
+				Log.dbg("Done");
 				fineAdjustActive = false;
 				InputLockManager.RemoveControlLock ("EEX_FA");
 				CloseWindow ();
@@ -328,7 +328,7 @@ namespace EditorExtensionsRedux
 		/// </summary>
 		public void Show ()
 		{
-			Log.Debug ("FineAdjustWindow Show()");
+			Log.trace("FineAdjustWindow Show()");
 			this.enabled = true;
 		}
 

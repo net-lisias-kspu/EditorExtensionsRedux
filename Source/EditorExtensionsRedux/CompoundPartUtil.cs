@@ -30,7 +30,6 @@ namespace EditorExtensionsRedux
 {
 	public static class CompoundPartUtil
 	{
-		const string VectorFormat = "F3";
 		const string strutPartName = "strutConnector";
 		const string fuelLinePartName = "fuelLine";
 		const float CompoundPartMaxLength = 10f;
@@ -49,7 +48,7 @@ namespace EditorExtensionsRedux
 		public static void AlignCompoundPart (CompoundPart part, bool snapHeights)
 		{
 			if (part.parent == null || part.target == null) {
-				Log.Debug("Part is not fully connected");
+				Log.warn("Part is not fully connected");
 				return;
 			}
 
@@ -64,21 +63,21 @@ namespace EditorExtensionsRedux
 			Part startPart = part.parent;
 			Part targetPart = part.target;
 
-			Log.Debug("Getting parentLocalHeight");
+			Log.dbg("Getting parentLocalHeight");
 			float parentLocalHeight = GetCompoundPartPositionHeight(part, part.parent);
 			//float parentLocalHeight = SnapCompoundPartHeight(part, part.parent);
-			Log.Debug("Getting targetLocalHeight");
+			Log.dbg("Getting targetLocalHeight");
 			float targetLocalHeight = GetCompoundPartPositionHeight(part, part.target);
 			//float targetLocalHeight = SnapCompoundPartHeight(part, part.target);
 
 			Vector3 startPosition = startPart.transform.position;
 			Vector3 destPosition = targetPart.transform.position;
 
-			Log.Debug(string.Format("startPosition: {0} destPosition: {1}", startPosition.ToString(), destPosition.ToString()));
+			Log.dbg(string.Format("startPosition: {0} destPosition: {1}", startPosition, destPosition));
 
 			GetCollisionPointOnAxis(startPart, destPosition, parentLocalHeight, out startPosition);
 			GetCollisionPointOnAxis(targetPart, startPosition, targetLocalHeight, out destPosition);
-			Log.Debug(string.Format("new collider startPosition: {0} destPosition: {1}", startPosition.ToString(), destPosition.ToString()));
+			Log.dbg(string.Format("new collider startPosition: {0} destPosition: {1}", startPosition, destPosition));
 
 			RepositionPart(part, startPart, startPosition, destPosition);
 		}
@@ -97,7 +96,7 @@ namespace EditorExtensionsRedux
 			destPosition.y = part.transform.localPosition.y; //level out
 			destPosition = startPart.transform.TransformPoint(destPosition); //back to global pos
 
-			Log.Debug(string.Format("new level startPosition: {0} destPosition: {1}", startPosition.ToString(), destPosition.ToString()));
+			Log.dbg(string.Format("new level startPosition: {0} destPosition: {1}", startPosition, destPosition));
 
 			RepositionPart(part, startPart, startPosition, destPosition);
 		}
@@ -111,14 +110,14 @@ namespace EditorExtensionsRedux
 			part.transform.Rotate(0, 90, 0);
 
 			Vector3 localDirToTarget = part.transform.InverseTransformDirection((destPosition - startPosition).normalized);
-			Log.Debug("final direction: " + localDirToTarget.ToString());
+			Log.dbg("final direction: {0}", localDirToTarget);
 
 			part.raycastTarget(localDirToTarget);
 		}
 
 		static float GetCompoundPartPositionHeight (CompoundPart part, Part target)
 		{
-			Log.Debug(string.Format("Getting new position height for {0} on {1}", part.name, target.name));
+			Log.dbg(string.Format("Getting new position height for {0} on {1}", part.name, target.name));
 
 			//lengthwise position on parent (extents, +/- from center)
 			float localHeight = 0f;
@@ -132,10 +131,10 @@ namespace EditorExtensionsRedux
 				localHeight = targetPos.y;
 				parentHeight = target.GetPartRendererBound().extents.y;
 			} else {
-				Log.Warn ("Unable to identify part");
+				Log.warn("Unable to identify part");
 			}
 
-			Log.Debug(string.Format("localHeight: {0} parentHeight: {1}", localHeight.ToString("F3"), parentHeight.ToString("F3")));
+			Log.dbg(string.Format("localHeight: {0:F3} parentHeight: {1:f3}", localHeight, parentHeight));
 
 			//offset strut when attaching to top/bottom of parent
 			const float strutOffset = 0.15f;
@@ -143,8 +142,8 @@ namespace EditorExtensionsRedux
 			const float parentSizeCutoff = 0.5f;
 
 			float heightPct = localHeight / parentHeight;
-			Log.Debug("Attachment height%: " + (heightPct * 100f).ToString("F0"));
-			Log.Debug("Original localHeight: " + localHeight.ToString());
+			Log.dbg("Attachment height% {0:F0}: ", (heightPct * 100f));
+			Log.dbg("Original localHeight: {0}", localHeight);
 
 			//+1 up, -1 down
 			float upOrDown = 1f;
@@ -153,36 +152,36 @@ namespace EditorExtensionsRedux
 
 			if (parentHeight < parentSizeCutoff) {
 				//for small parts, just center on them
-				Log.Debug ("Parent is small, defaulting to center");
+				Log.dbg("Parent is small, defaulting to center");
 				localHeight = 0f;
 			} else if (parentHeight >= 1.5f) {
 				//only do quarter snapping for parts >= 3.0 total height
 				if (Math.Abs(localHeight) < parentHeight * 0.125f) {
 					//middle 25% of parent, snap to center (12.5% of extent)
-					Log.Debug("Centering on parent");
+					Log.dbg("Centering on parent");
 					localHeight = 0f;
 				} else if (Math.Abs(localHeight) < parentHeight * 0.7f) {
 					//top/bottom quarter (70% of extent)
-					Log.Debug("Centering quarter on parent");
+					Log.dbg("Centering quarter on parent");
 					localHeight = parentHeight / 2 * upOrDown;
 				} else {
 					//top/bottom edge
-					Log.Debug("Aligning to edge of parent");
+					Log.dbg("Aligning to edge of parent");
 					localHeight = (parentHeight - strutOffset) * upOrDown;
 				}
 			
 			} else if (Math.Abs(localHeight) < parentHeight * 0.5f) {
 				//middle 50% of parent, snap to center
-				Log.Debug("Centering on parent");
+				Log.dbg("Centering on parent");
 				localHeight = 0f;
 			} else {
 				//top/bottom edge
-				Log.Debug("Aligning to edge of parent");
+				Log.dbg("Aligning to edge of parent");
 				localHeight = (parentHeight - strutOffset) * upOrDown;
 			}
 
 
-			Log.Debug("new localHeight: " + localHeight.ToString());
+			Log.dbg("new localHeight: {0}", localHeight);
 			return localHeight;
 		}
 
@@ -197,21 +196,21 @@ namespace EditorExtensionsRedux
 		private static bool GetCollisionPointOnAxis (Part part, Vector3 externalPoint, float partHeight, out Vector3 collisionPoint)
 		{
 			//(to - from).normalized;
-			Log.Debug ("partHeight " + partHeight.ToString ("F3"));
+			Log.dbg("partHeight {0:F3}", partHeight);
 			Vector3 internalTarget = part.transform.TransformPoint (new Vector3 (0f, partHeight, 0f));
-			Log.Debug ("internalTarget " + internalTarget.ToString (VectorFormat));
+			Log.dbg("internalTarget {0:F3}", internalTarget);
 			//localize external point
 			externalPoint = part.transform.InverseTransformPoint (externalPoint);
-			Log.Debug ("local externalPoint " + externalPoint.ToString (VectorFormat));
+			Log.dbg("local externalPoint {0:F3}", externalPoint);
 			//level to same height
 			externalPoint.y = partHeight;
-			Log.Debug ("levelled local externalPoint " + externalPoint.ToString (VectorFormat));
+			Log.dbg("levelled local externalPoint {0:F3}", externalPoint);
 			//back to global
 			externalPoint = part.transform.TransformPoint (externalPoint);
-			Log.Debug ("global externalPoint " + externalPoint.ToString (VectorFormat));
+			Log.dbg ("global externalPoint {0:F3}", externalPoint);
 
 			Vector3 direction = (internalTarget - externalPoint).normalized;
-			Log.Debug ("direction " + direction.ToString (VectorFormat));
+			Log.dbg("direction {0:F2}", direction);
 
 			return GetPartCollisionPointByDirection (part, externalPoint, direction, out collisionPoint);
 		}
@@ -221,7 +220,7 @@ namespace EditorExtensionsRedux
 		/// </summary>
 		private static bool GetPartCollisionPointByDirection (Part part, Vector3 origin, Vector3 targetDirection, out Vector3 collisionPoint)
 		{
-			Log.Debug (string.Format("GetPartCollisionPointByDirection: collider raycast from {0} in direction {1}", origin.ToString (VectorFormat), targetDirection.ToString (VectorFormat)));
+			Log.dbg(string.Format("GetPartCollisionPointByDirection: collider raycast from {0:F3} in direction {1:F3}", origin, targetDirection));
 			//using this method becuase Physics.RayCast ignores hits originating from inside the collider
 			Ray r = new Ray (origin, targetDirection);
 
@@ -230,11 +229,11 @@ namespace EditorExtensionsRedux
 			RaycastHit hit = new RaycastHit ();
 			if (part.collider.Raycast(r, out hit, CompoundPartMaxLength)) {
 				collisionPoint = hit.point;
-				Log.Debug ("Collider hit: " + collisionPoint.ToString (VectorFormat));
+				Log.dbg("Collider hit: {0}", collisionPoint);
 				return true;
 			} else {
 				collisionPoint = origin;
-				Log.Debug ("Collider miss");
+				Log.dbg("Collider miss");
 				return false;
 			}
 		}

@@ -23,17 +23,17 @@ namespace EditorExtensionsRedux
 	{
 		private static readonly Logger log = Logger.CreateForType<Startup> ();
 
-		internal static void Force (string msg, params object [] @params)
+		internal static void force (string msg, params object [] @params)
 		{
 			log.force (msg, @params);
 		}
 
-		internal static void Info (string msg, params object [] @params)
+		internal static void info (string msg, params object [] @params)
 		{
 			log.info (msg, @params);
 		}
 
-		internal static void Warn (string msg, params object [] @params)
+		internal static void warn (string msg, params object [] @params)
 		{
 			log.warn (msg, @params);
 		}
@@ -46,6 +46,11 @@ namespace EditorExtensionsRedux
 		internal static void error (string msg, params object [] @params)
 		{
 			log.error (msg, @params);
+		}
+
+		internal static void trace (string msg, params object [] @params)
+		{
+			log.trace (msg, @params);
 		}
 
 		[ConditionalAttribute ("DEBUG")]

@@ -55,7 +55,7 @@ namespace EditorExtensionsRedux
 				{
 					onOffsetGizmoSpawned.Fire(offset);
 				}
-				else Log.Debug("Didn't find a gizmo on this GameObject -- something has broken");
+				else Log.warn("Didn't find a gizmo on this GameObject -- something has broken");
 
 				// could destroy this MB now, unless you wanted to use OnDestroy to sent an event
 			}
@@ -82,14 +82,14 @@ namespace EditorExtensionsRedux
 
 			if (prefab == null)
 			{
-				Log.Error("Couldn't find gizmo '" + prefabName + "'");
+				Log.error("Couldn't find gizmo '{0}'", prefabName);
 				return;
 			}
 
 			prefab.AddOrGetComponent<GizmoCreationListener>();
 
 			#if DEBUG
-			Log.Info("Added listener to " + prefabName);
+			Log.trace("Added listener to {0}", prefabName);
 			#endif
 		}
 
@@ -97,13 +97,13 @@ namespace EditorExtensionsRedux
 
 		private void RotateGizmoSpawned(EditorGizmos.GizmoRotate data)
 		{
-			Log.Info("Rotate gizmo was spawned 1");
+			Log.trace("Rotate gizmo was spawned 1");
 		}
 
 
 		private void OffsetGizmoSpawned(EditorGizmos.GizmoOffset data)
 		{
-			Log.Info("Offset gizmo was spawned 1");
+			Log.trace("Offset gizmo was spawned 1");
 		}
 
 
@@ -134,7 +134,7 @@ namespace EditorExtensionsRedux
 			GizmoEvents.offsetGizmoActive = false;
 			GizmoEvents.gizmosRotate = HighLogic.FindObjectsOfType<EditorGizmos.GizmoRotate> ();
 			GizmoEvents.gizmoRotateHandle = HighLogic.FindObjectOfType<EditorGizmos.GizmoRotateHandle> ();
-			Log.Info("Rotate gizmo was spawned 2");
+			Log.dbg("Rotate gizmo was spawned 2");
 		}
 
 
@@ -149,8 +149,8 @@ namespace EditorExtensionsRedux
             {
                 
                 Space sp = GizmoEvents.gizmosOffset[0].CoordSpace;
-                Log.Info("gizmoOffset == null, EditorLogic.SelectedPart: " + EditorLogic.SelectedPart.partInfo.title);
-                Log.Info("coordSpace: " + sp.ToString());
+                Log.dbg("gizmoOffset == null, EditorLogic.SelectedPart: {0}", EditorLogic.SelectedPart.partInfo.title);
+                Log.dbg("coordSpace: {0}", sp);
 
                 if (GizmoEvents.gizmosOffset[0].CoordSpace == Space.Self)
                 {
@@ -163,7 +163,7 @@ namespace EditorExtensionsRedux
 
             }
 
-            Log.Info("Offset gizmo was spawned 2");
+            Log.dbg("Offset gizmo was spawned 2");
 		}
 	}
 	#endif
