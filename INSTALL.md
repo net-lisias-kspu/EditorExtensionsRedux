@@ -1,6 +1,8 @@
-# Editor Extensions Redux /L Unofficial
+# Editor Extensions Redux /L Unleashed
 
-Extensions for the KSP Editor. Unofficial fork by Lisias.
+Extensions for the KSP Editor.
+
+[Unleashed](https://ksp.lisias.net/add-ons-unleashed/) fork by Lisias.
 
 
 ## Installation Instructions
@@ -20,21 +22,23 @@ The following file layout must be present after installation:
 ```
 <KSP_ROOT>
 	[GameData]
-		[EditorExtensionsRedux]
-			[PluginData]
-				[Textures]
-					AppLauncherIcon.png
-					...
-			CHANGE_LOG.md
-			LICENSE
-			NOTICE
-			EditorExtensionsRedux.dll
-			...
+		[net.lisias.ksp]
+			[EditorExtensionsRedux]
+				[PluginData]
+					[Textures]
+						AppLauncherIcon.png
+						...
+				CHANGE_LOG.md
+				LICENSE*
+				NOTICE
+				EditorExtensionsRedux.dll
+				...
 		000_KSPe.dll
 		...
 	[PluginData]
-		[EditorExtensionsRedux] <not present until you run it for the fist time>
-			config.xml 
+		[net.lisias.ksp]
+			[EditorExtensionsRedux] <not present until you run it for the fist time>
+				config.xml 
 	KSP.log
 	PartDatabase.cfg
 	...
@@ -43,7 +47,7 @@ The following file layout must be present after installation:
 
 ### Dependencies
 
-* [KSP API Extensions/L](https://github.com/net-lisias-ksp/KSPAPIExtensions) 2.1 or later
+* [KSP API Extensions/L](https://github.com/net-lisias-ksp/KSPAPIExtensions) 2.4 or later
 	+ Hard Dependency - Plugin will not work without it.
 	+ Not Included
 

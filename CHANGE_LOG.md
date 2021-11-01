@@ -1,4 +1,4 @@
-# Editor Extensions Redux :: Change Log
+# Editor Extensions Redux /L Unleashed :: Change Log
 
 * 2019-0126: 3.3.19.12 (lisias) for KSP >= 1.4
 	+ Merging fixes from upstream

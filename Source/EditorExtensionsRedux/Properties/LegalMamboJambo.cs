@@ -23,31 +23,13 @@
 	If not, see <https://www.gnu.org/licenses/>.
 
 */
-using System;
-using UnityEngine;
-
 namespace EditorExtensionsRedux
 {
-	#if DEBUG
-//	[KSPAddon(KSPAddon.Startup.MainMenu, false)]
-//	public class Debug_AutoLoadQuicksaveOnStartup: UnityEngine.MonoBehaviour
-//	{
-//		public static bool first = true;
-//		public void Start()
-//		{
-//			if (first)
-//			{
-//				first = false;
-//				HighLogic.SaveFolder = "dev";
-//				var game = GamePersistence.LoadGame("persistent", HighLogic.SaveFolder, true, false);
-//
-//				if (game != null && game.flightState != null && game.compatible)
-//				{
-//					HighLogic.LoadScene(GameScenes.SPACECENTER);
-//				}
-//			}
-//		}
-//	}
-	#endif
+	public static class LegalMamboJambo
+	{
+		public const string Company = "/L Aerospace/KSP Division";
+		public const string Copyright = "© 2018-2021 LisiasT";
+		public const string Product = "Editor Extensions";
+		public const string Trademark = "Editor Extensions™ by MachXXV, Redux™ by LinuxGyruGamer, /L Unleashed™ by LisiasT";
+	}
 }
-

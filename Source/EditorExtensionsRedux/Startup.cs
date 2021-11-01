@@ -23,31 +23,25 @@
 	If not, see <https://www.gnu.org/licenses/>.
 
 */
-using System;
+using KSPe.Annotations;
 using UnityEngine;
 
 namespace EditorExtensionsRedux
 {
-	#if DEBUG
-//	[KSPAddon(KSPAddon.Startup.MainMenu, false)]
-//	public class Debug_AutoLoadQuicksaveOnStartup: UnityEngine.MonoBehaviour
-//	{
-//		public static bool first = true;
-//		public void Start()
-//		{
-//			if (first)
-//			{
-//				first = false;
-//				HighLogic.SaveFolder = "dev";
-//				var game = GamePersistence.LoadGame("persistent", HighLogic.SaveFolder, true, false);
-//
-//				if (game != null && game.flightState != null && game.compatible)
-//				{
-//					HighLogic.LoadScene(GameScenes.SPACECENTER);
-//				}
-//			}
-//		}
-//	}
-	#endif
-}
+	[KSPAddon (KSPAddon.Startup.Instantly, true)]
+	internal class Startup : MonoBehaviour
+	{
+		[UsedImplicitly]
+		private void Start ()
+		{
+			Log.force ("Version {0}", Version.Text);
 
+			try {
+				KSPe.Util.Installation.Check<Startup> ();
+			} catch (KSPe.Util.InstallmentException e) {
+				Log.error (e.ToShortMessage ());
+				KSPe.Common.Dialogs.ShowStopperAlertBox.Show (e);
+			}
+		}
+	}
+}
