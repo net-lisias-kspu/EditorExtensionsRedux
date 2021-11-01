@@ -72,7 +72,7 @@ This work is DOUBLE LICENSED under the [Unlicense](http://unlicense.org) and [SK
 		- You don't change the material in any way, and retain any copyright notices
 		- You must explicitly state the author's Copyright, as well an Official Site for downloading the original and new versions (see above) 
 
-Releases previous to 1.22 are still available under the MIT license and are available [here](https://github.com/net-lisias-kspu/EditorExtensionsRedux/tree/Source/MIT) and on the in upstream's repositories. Please note this [statement](https://www.gnu.org/licenses/license-list.en.html#Expat) from FSF.
+Releases previous to 3.4.4.0  are still available under the MIT license and are available [here](https://github.com/net-lisias-kspu/EditorExtensionsRedux/tree/Source/MIT) and on the in upstream's repositories. Please note this [statement](https://www.gnu.org/licenses/license-list.en.html#Expat) from FSF.
 
 Please note the copyrights and trademarks in [NOTICE](./NOTICE)
 
