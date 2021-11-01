@@ -28,8 +28,8 @@ using System.Xml.Serialization;
 using System.Collections.Generic;
 using UnityEngine;
 using SIO = System.IO;
-using KSPe.IO;
-using KSPe.IO.Data;
+using File = KSPe.IO.File<EditorExtensionsRedux.EditorExtensions>;
+using Data = KSPe.IO.Data<EditorExtensionsRedux.EditorExtensions>;
 
 namespace EditorExtensionsRedux
 {
@@ -38,7 +38,7 @@ namespace EditorExtensionsRedux
 		public static bool FileExists (string filePath)
 		{
 			try {
-				return File<EditorExtensions>.Data.Exists(filePath);
+				return File.Data.Exists(filePath);
 			} catch (Exception ex) {
 				Log.error("Failed to verify file {0} Error: {1}", filePath, ex.Message);
 				return false;
@@ -49,7 +49,7 @@ namespace EditorExtensionsRedux
 		{
 			try {
 				XmlSerializer serializer = new XmlSerializer (typeof(ConfigData));
-				using (SIO.TextWriter writer = StreamWriter.CreateForType<EditorExtensions>(fn)) {
+				using (SIO.TextWriter writer = Data.StreamWriter.CreateFor(fn)) {
 					serializer.Serialize (writer, configData); 
 				}
 				Log.trace("Saved config file");
@@ -67,7 +67,7 @@ namespace EditorExtensionsRedux
 				XmlSerializer deserializer = new XmlSerializer (typeof(ConfigData));
 
 				ConfigData data;
-				using (SIO.TextReader reader = StreamReader.CreateForType<EditorExtensions>(fn)) {
+				using (SIO.TextReader reader = Data.StreamReader.CreateFor(fn)) {
 					object obj = deserializer.Deserialize (reader);
 					data = (ConfigData)obj;
 				}

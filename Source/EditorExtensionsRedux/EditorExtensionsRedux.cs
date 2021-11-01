@@ -33,6 +33,8 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+using Data = KSPe.IO.File<EditorExtensionsRedux.EditorExtensions>.Data;
+
 /*
  * 
  * 
@@ -2288,7 +2290,8 @@ editor.angleSnapSprite.gameObject.SetActive (false);
         const int _toolbarHeight = 42;
         //37
         bool oldAllowTweakingWithoutTweakables = GameSettings.ADVANCED_TWEAKABLES;
-        public void ShowMenu(bool firstTime = true)
+        public void ShowMenu() { this.ShowMenu(true); }
+        public void ShowMenu(bool firstTime)
         {
             if (!validVersion)
                 return;
@@ -2410,7 +2413,7 @@ editor.angleSnapSprite.gameObject.SetActive (false);
             GUILayout.BeginVertical();
             if (GUILayout.Button("Settings"))
             {
-				_settingsWindow.Show(cfg, KSPe.IO.File<EditorExtensions>.Data.Solve(ConfigFileName), pluginVersion);
+				_settingsWindow.Show(cfg, Data.Solve(ConfigFileName), pluginVersion);
                 this.Visible = true;
             }
 #if true

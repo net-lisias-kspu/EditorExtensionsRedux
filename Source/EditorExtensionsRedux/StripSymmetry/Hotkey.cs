@@ -27,7 +27,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using KSPe.IO.Data;
+
+using Data = KSPe.IO.Data<EditorExtensionsRedux.StripSymmetry.StripSymmetry>;
 
 namespace EditorExtensionsRedux.StripSymmetry
 {
@@ -36,7 +37,7 @@ namespace EditorExtensionsRedux.StripSymmetry
         private readonly Dictionary<KeyCode, bool> _modifiers = new Dictionary<KeyCode, bool>();
         private KeyCode _trigger = KeyCode.None;
         private readonly string _name;
-        private readonly PluginConfiguration _config = PluginConfiguration.CreateForType<StripSymmetry>();
+        private readonly Data.PluginConfiguration _config = Data.PluginConfiguration.CreateFor();
 
         public Hotkey(string name, ICollection<KeyCode> defaultKey)
         {

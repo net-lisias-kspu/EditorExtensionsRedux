@@ -11,5 +11,5 @@ using System.Reflection;
 
 [assembly: AssemblyVersion(EditorExtensionsRedux.Version.Number)]
 [assembly: AssemblyFileVersion(EditorExtensionsRedux.Version.Number)]
-
-[assembly: KSPAssemblyDependency("KSPe", 2, 1)]
+[assembly: KSPAssemblyDependency("KSPe", 2, 4)]
+[assembly: KSPAssemblyDependency("KSPe.UI", 2, 4)]

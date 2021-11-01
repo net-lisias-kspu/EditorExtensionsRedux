@@ -40,7 +40,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EditorExtensionsRedux.cs" />
     <Compile Include="SettingsWindow.cs" />
-    <Compile Include="AppLauncherButton.cs" />
     <Compile Include="DebugAutoLoadSave.cs" />
     <Compile Include="Config\ConfigData.cs" />
     <Compile Include="Config\ConfigManager.cs" />
@@ -68,6 +67,8 @@
     <Compile Include="Log.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\LegalMamboJambo.cs" />
+    <Compile Include="ToolbarSupport.cs" />
+    <Compile Include="ModuleManagerSupport.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
