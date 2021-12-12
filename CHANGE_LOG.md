@@ -1,5 +1,7 @@
 # Editor Extensions Redux /L Unleashed :: Change Log
 
+* 2021-1211: 3.4.4.1 (lisias) for KSP >= 1.4
+	+ Fixing a mishap on the settings persistence.
 * 2021-1101: 3.4.4.0 (lisias) for KSP >= 1.4
 	+ Updates KSPe to v2.4 (including toolbar!)
 	+ Small adjustments on the UI.
