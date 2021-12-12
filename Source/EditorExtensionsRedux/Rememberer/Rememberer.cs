@@ -70,11 +70,11 @@ namespace Rememberer
 
         public void OnDisable()
         {
-            nodeFile = new ConfigNode();
+            nodeFile = CONFIG.Node;
 
             nodeFile.SetValue(SORTASC_NAME, sortAsc.ToString(), true);
             nodeFile.SetValue(SORTINDEX_NAME, sortIndex.ToString(), true);
-            CONFIG.Save(nodeFile);
+            CONFIG.Save();
 
             //EditorPartList is already disabled when OnDisable is called so remove callback gives NRE
             //EditorPartList.Instance.partListSorter.RemoveOnSortCallback(SortCB);
