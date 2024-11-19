@@ -33,6 +33,9 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+using GUI = KSPe.UI.GUI;
+using GUILayout = KSPe.UI.GUILayout;
+
 using Data = KSPe.IO.File<EditorExtensionsRedux.EditorExtensions>.Data;
 
 /*

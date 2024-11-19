@@ -25,6 +25,9 @@
 */
 using UnityEngine;
 
+using GUI = KSPe.UI.GUI;
+using GUILayout = KSPe.UI.GUILayout;
+
 namespace EditorExtensionsRedux
 {
 	public abstract class GUIWindow : MonoBehaviour

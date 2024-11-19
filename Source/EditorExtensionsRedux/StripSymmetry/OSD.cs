@@ -28,6 +28,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+using GUI = KSPe.UI.GUI;
+using GUILayout = KSPe.UI.GUILayout;
+
 namespace EditorExtensionsRedux.StripSymmetry
 {
     // ReSharper disable once InconsistentNaming
