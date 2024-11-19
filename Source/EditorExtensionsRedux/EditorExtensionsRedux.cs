@@ -783,7 +783,7 @@ namespace EditorExtensionsRedux
         //
         void OnGameSettingsWritten()
         {
-            Log.Info("OnGameSettingsWritten, resetting Symmetry and Angle keys after a save to original settings and saving");
+            Log.detail("OnGameSettingsWritten, resetting Symmetry and Angle keys after a save to original settings and saving");
             // Reset the GameSettings
             
             SetKeysToSavedSettings();
@@ -795,7 +795,7 @@ namespace EditorExtensionsRedux
 
         public void SafeWriteSettings()
         {
-            Log.Info("SafeWriteSettings");
+            Log.detail("SafeWriteSettings");
             GameEvents.OnGameSettingsWritten.Remove(OnGameSettingsWritten);
             GameSettings.SaveSettings();
             GameEvents.OnGameSettingsWritten.Add(OnGameSettingsWritten);
@@ -804,8 +804,8 @@ namespace EditorExtensionsRedux
         //Unity, called after Awake()
         public void Start()
         {
-            Log.Debug("Start()");
-            Log.Debug("Version: " + Versioning.Revision);
+            Log.dbg("Start()");
+            Log.dbg("Version: {0}", Versioning.Revision);
             //Boop: Cache the editor hotkeys so we can keep consistency with whatever is in the settings.cfg file.
             {
                 // Following section is set to fix an old bug, where sometimes the Symmetry and AngleSnap keys get set to null
@@ -823,13 +823,13 @@ namespace EditorExtensionsRedux
 
                 if (GameSettings.Editor_toggleSymMode.primary.code == KeyCode.None)
                 {
-                    Log.Error("GameSettings.Editor_toggleSymMode.primary set to NONE on entry to EEX, resetting to X");
+                    Log.error("GameSettings.Editor_toggleSymMode.primary set to NONE on entry to EEX, resetting to X");
                     GameSettings.Editor_toggleSymMode.primary  = new KeyCodeExtended(KeyCode.X);
                     SafeWriteSettings();
                 }
                 if (GameSettings.Editor_toggleAngleSnap.primary.code == KeyCode.None)
                 {
-                    Log.Error("GameSettings.Editor_toggleAngleSnap.primary set to NONE on entry to EEX, resetting to C");
+                    Log.error("GameSettings.Editor_toggleAngleSnap.primary set to NONE on entry to EEX, resetting to C");
                     GameSettings.Editor_toggleAngleSnap.primary = new KeyCodeExtended(KeyCode.C);
                     SafeWriteSettings();
                 }
@@ -884,10 +884,10 @@ namespace EditorExtensionsRedux
             GameSettings.Editor_toggleAngleSnap.primary = HotkeyEditor_toggleAngleSnapPrimary;
             GameSettings.Editor_toggleAngleSnap.secondary = HotkeyEditor_toggleAngleSnapSecondary;
             {
-                Log.Info("GameSettings.Editor_toggleSymMode.primary: " + GameSettings.Editor_toggleSymMode.primary);
-                Log.Info("GameSettings.Editor_toggleSymMode.secondary: " + GameSettings.Editor_toggleSymMode.secondary);
-                Log.Info("GameSettings.Editor_toggleAngleSnap.primary: " + GameSettings.Editor_toggleAngleSnap.primary);
-                Log.Info("GameSettings.Editor_toggleAngleSnap.secondary: " + GameSettings.Editor_toggleAngleSnap.secondary);
+                Log.detail("GameSettings.Editor_toggleSymMode.primary: " + GameSettings.Editor_toggleSymMode.primary);
+                Log.detail("GameSettings.Editor_toggleSymMode.secondary: " + GameSettings.Editor_toggleSymMode.secondary);
+                Log.detail("GameSettings.Editor_toggleAngleSnap.primary: " + GameSettings.Editor_toggleAngleSnap.primary);
+                Log.detail("GameSettings.Editor_toggleAngleSnap.secondary: " + GameSettings.Editor_toggleAngleSnap.secondary);
             }
             GameEvents.onEditorPartEvent.Remove(EditorPartEvent);
             GameEvents.onEditorSymmetryModeChange.Remove(EditorSymmetryModeChange);
@@ -2464,7 +2464,7 @@ editor.angleSnapSprite.gameObject.SetActive (false);
             if (!validVersion)
                 return;
             this.Visible = true;
-            Log.Debug("Show()");
+            Log.dbg("Show()");
             //if (!_settingsWindow.enabled) {
             //	_settingsWindow.Show (cfg, _configFilePath, pluginVersion);
             //}
