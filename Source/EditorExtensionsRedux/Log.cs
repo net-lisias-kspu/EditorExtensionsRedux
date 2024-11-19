@@ -1,6 +1,6 @@
 ﻿/*
 	This file is part of Editor Extensions Redux /L Unleashed
-		© 2018-2021 LisiasT : http://lisias.net <support@lisias.net>
+		© 2018-2024 LisiasT : https://lisias.net <support@lisias.net>
 
 	THIS FILE is licensed to you under:
 

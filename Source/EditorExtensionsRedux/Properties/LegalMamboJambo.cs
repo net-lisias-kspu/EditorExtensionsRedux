@@ -1,6 +1,6 @@
 ﻿/*
 	This file is part of Editor Extensions Redux /L Unleashed
-		© 2018-2021 LisiasT : http://lisias.net <support@lisias.net>
+		© 2018-2024 LisiasT : https://lisias.net <support@lisias.net>
 		© 2016-2018 LinuxGyruGamer
 		© 2013-2016 MachXXV
 
@@ -28,7 +28,7 @@ namespace EditorExtensionsRedux
 	public static class LegalMamboJambo
 	{
 		public const string Company = "/L Aerospace/KSP Division";
-		public const string Copyright = "© 2018-2021 LisiasT";
+		public const string Copyright = "© 2018-2024 LisiasT";
 		public const string Product = "Editor Extensions";
 		public const string Trademark = "Editor Extensions™ by MachXXV, Redux™ by LinuxGyruGamer, /L Unleashed™ by LisiasT";
 	}
