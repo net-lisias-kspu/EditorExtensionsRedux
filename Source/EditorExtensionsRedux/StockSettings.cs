@@ -61,7 +61,7 @@ namespace EditorExtensionsRedux
             return true;
         }
 
-        bool unread = false;
+        //bool unread = false;
         public override bool Interactible(MemberInfo member, GameParameters parameters)
         {
             

@@ -253,18 +253,12 @@ namespace EditorExtensionsRedux
                     EditorExtensions.Instance.HotkeyEditor_toggleAngleSnapPrimary = new KeyCodeExtended(KeyCode.C);
                     EditorExtensions.Instance.HotkeyEditor_toggleAngleSnapSecondary = new KeyCodeExtended(KeyCode.None);
                     // Now reset the GameSettings
-                    GameSettings.Editor_toggleSymMode.primary = EditorExtensions.Instance.HotkeyEditor_toggleSymModePrimary;
-                    GameSettings.Editor_toggleSymMode.secondary = EditorExtensions.Instance.HotkeyEditor_toggleSymModeSecondary;
-                    GameSettings.Editor_toggleAngleSnap.primary = EditorExtensions.Instance.HotkeyEditor_toggleAngleSnapPrimary;
-                    GameSettings.Editor_toggleAngleSnap.secondary = EditorExtensions.Instance.HotkeyEditor_toggleAngleSnapSecondary;
+                    EditorExtensions.Instance.SetKeysToSavedSettings();
                     // and Save the game settings
-                    GameSettings.SaveSettings();
+                    EditorExtensions.Instance.SafeWriteSettings();
 
                     //Finally,  set the Gamesetting key to null (see other locations for info)
-                    GameSettings.Editor_toggleSymMode.primary = new KeyCodeExtended(KeyCode.None);
-                    GameSettings.Editor_toggleSymMode.secondary = new KeyCodeExtended(KeyCode.None);
-                    GameSettings.Editor_toggleAngleSnap.primary = new KeyCodeExtended(KeyCode.None);
-                    GameSettings.Editor_toggleAngleSnap.secondary = new KeyCodeExtended(KeyCode.None);
+                    EditorExtensions.Instance.SetKeysToNoneValue();
                 }
                 GUILayout.EndHorizontal();
 
@@ -283,7 +277,7 @@ namespace EditorExtensionsRedux
                 
                 GUILayout.BeginHorizontal();
                 GUILayout.Label("Horizontal Center in Editor:", settingsLabelLayout);
-                if (keyMapToUpdate == "vs" && _lastKeyPressed != KeyCode.None)
+                if (keyMapToUpdate == "hc" && _lastKeyPressed != KeyCode.None)
                 {
                     _config.KeyMap.HorizontalCenter = _lastKeyPressed;
                     keyMapToUpdate = string.Empty;
@@ -291,7 +285,7 @@ namespace EditorExtensionsRedux
                 if (GUILayout.Button(_config.KeyMap.HorizontalCenter.ToString()))
                 {
                     _lastKeyPressed = KeyCode.None;
-                    keyMapToUpdate = "vs";
+                    keyMapToUpdate = "hc";
                 }
                 GUILayout.EndHorizontal();
 

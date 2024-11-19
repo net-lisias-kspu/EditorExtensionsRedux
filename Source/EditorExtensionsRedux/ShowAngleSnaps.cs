@@ -54,13 +54,6 @@ namespace EditorExtensionsRedux
             yMax = 50 //0 height, GUILayout resizes it
         };
 
-        //ctor
-        public ShowAngleSnaps()
-        {
-            //start disabled
-            this.enabled = false;
-        }
-
         public bool isVisible()
         {
             return this.enabled;

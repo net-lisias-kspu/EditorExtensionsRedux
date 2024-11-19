@@ -550,7 +550,7 @@ namespace EditorExtensionsRedux
                             c.GIZMOROTATE_ONHANDLEROTATESTART = cnt;
                             break;
                         case "OnHandleRotate":
-                            c.GIZMOROTATE_ONHANDLEROTATE = cnt ;
+                            c.GIZMOROTATE_ONHANDLEROTATE = cnt;
                             break;
                         case "OnHandleRotateEnd":
                             c.GIZMOROTATE_ONHANDLEROTATEEND = cnt;
@@ -575,10 +575,10 @@ namespace EditorExtensionsRedux
                             c.GIZMOOFFSET_ONHANDLEMOVESTART = cnt;
                             break;
                         case "OnHandleMove":
-                            c.GIZMOOFFSET_ONHANDLEMOVE = cnt ;
+                            c.GIZMOOFFSET_ONHANDLEMOVE = cnt;
                             break;
                         case "OnHandleMoveEnd":
-                            c.GIZMOOFFSET_ONHANDLEMOVEEND = cnt ;
+                            c.GIZMOOFFSET_ONHANDLEMOVEEND = cnt;
                             break;
                     }
                 }
@@ -601,9 +601,11 @@ namespace EditorExtensionsRedux
 
         public static Constants c = new Constants();
 
+        public bool Visible { get; set; }
+
         public NoOffsetBehaviour.FreeOffsetBehaviour fob;
 
-#region member vars
+        #region member vars
 
 
 
@@ -643,7 +645,7 @@ namespace EditorExtensionsRedux
         static int preResetSymmetryMode = 0;
 
         static bool last_VAB_USE_ANGLE_SNAP = true;
-#endregion
+        #endregion
 
         //	public EditorExtensions (){}
 
@@ -755,22 +757,93 @@ namespace EditorExtensionsRedux
 #endif
 
         //Boop: Cache the editor hotkeys so we can keep consistency with whatever is in the settings.cfg file.
-        internal KeyCodeExtended HotkeyEditor_toggleSymModePrimary = GameSettings.Editor_toggleSymMode.primary;
-        internal KeyCodeExtended HotkeyEditor_toggleSymModeSecondary = GameSettings.Editor_toggleSymMode.secondary;
-        internal KeyCodeExtended HotkeyEditor_toggleAngleSnapPrimary = GameSettings.Editor_toggleAngleSnap.primary;
-        internal KeyCodeExtended HotkeyEditor_toggleAngleSnapSecondary = GameSettings.Editor_toggleAngleSnap.secondary;
+        internal  KeyCodeExtended HotkeyEditor_toggleSymModePrimary; // = GameSettings.Editor_toggleSymMode.primary;
+        internal  KeyCodeExtended HotkeyEditor_toggleSymModeSecondary; // = GameSettings.Editor_toggleSymMode.secondary;
+        internal  KeyCodeExtended HotkeyEditor_toggleAngleSnapPrimary; // = GameSettings.Editor_toggleAngleSnap.primary;
+        internal  KeyCodeExtended HotkeyEditor_toggleAngleSnapSecondary;// = GameSettings.Editor_toggleAngleSnap.secondary;
 
-        //Unity, called after Awake()
-        public void Start()
+
+        internal void SetKeysToSavedSettings()
         {
-            Log.trace("Start()");
-            //Boop: Nuke the editor hotkeys so we can hijack them.
+            GameSettings.Editor_toggleSymMode.primary = EditorExtensions.Instance.HotkeyEditor_toggleSymModePrimary;
+            GameSettings.Editor_toggleSymMode.secondary = EditorExtensions.Instance.HotkeyEditor_toggleSymModeSecondary;
+            GameSettings.Editor_toggleAngleSnap.primary = EditorExtensions.Instance.HotkeyEditor_toggleAngleSnapPrimary;
+            GameSettings.Editor_toggleAngleSnap.secondary = EditorExtensions.Instance.HotkeyEditor_toggleAngleSnapSecondary;
+        }
+        internal void SetKeysToNoneValue()
+        {
             GameSettings.Editor_toggleSymMode.primary = new KeyCodeExtended(KeyCode.None);
             GameSettings.Editor_toggleSymMode.secondary = new KeyCodeExtended(KeyCode.None);
             GameSettings.Editor_toggleAngleSnap.primary = new KeyCodeExtended(KeyCode.None);
             GameSettings.Editor_toggleAngleSnap.secondary = new KeyCodeExtended(KeyCode.None);
+        }
+        //
+        // This is to protect against another mod saving the game settings while these values are set to null.
+        // This will reset the values back to stock, save it and then set them null again 
+        //
+        void OnGameSettingsWritten()
+        {
+            Log.Info("OnGameSettingsWritten, resetting Symmetry and Angle keys after a save to original settings and saving");
+            // Reset the GameSettings
+            
+            SetKeysToSavedSettings();
 
-#if DEBUG
+            SafeWriteSettings();
+
+            SetKeysToNoneValue();
+        }
+
+        public void SafeWriteSettings()
+        {
+            Log.Info("SafeWriteSettings");
+            GameEvents.OnGameSettingsWritten.Remove(OnGameSettingsWritten);
+            GameSettings.SaveSettings();
+            GameEvents.OnGameSettingsWritten.Add(OnGameSettingsWritten);
+
+        }
+        //Unity, called after Awake()
+        public void Start()
+        {
+            Log.Debug("Start()");
+            Log.Debug("Version: " + Versioning.Revision);
+            //Boop: Cache the editor hotkeys so we can keep consistency with whatever is in the settings.cfg file.
+            {
+                // Following section is set to fix an old bug, where sometimes the Symmetry and AngleSnap keys get set to null
+                // This is only a partial fix, which really just resets the keys to the stock default if a None value is detected.
+                // It's caused by another mod saving the settings which now have the two values set to NULL by this mod, 
+                // and then for whatever reason, the game exits before EEX can save the correct settings.
+
+                // The second part of the fix was adding the method OnGameSettingsWritten(), which watches for anything
+                // which saves the Settings file.  When that happens, the method will set the correct values to the keys, save it
+                // and then set them back to what the mod requires.
+                //
+                // The SafeWrite is the third part of the fix, where the SaveSettings is prefixed by removing the event call, 
+                // saving the settings and then putting the event call back.  This prevents an endless loop
+                //
+
+                if (GameSettings.Editor_toggleSymMode.primary.code == KeyCode.None)
+                {
+                    Log.Error("GameSettings.Editor_toggleSymMode.primary set to NONE on entry to EEX, resetting to X");
+                    GameSettings.Editor_toggleSymMode.primary  = new KeyCodeExtended(KeyCode.X);
+                    SafeWriteSettings();
+                }
+                if (GameSettings.Editor_toggleAngleSnap.primary.code == KeyCode.None)
+                {
+                    Log.Error("GameSettings.Editor_toggleAngleSnap.primary set to NONE on entry to EEX, resetting to C");
+                    GameSettings.Editor_toggleAngleSnap.primary = new KeyCodeExtended(KeyCode.C);
+                    SafeWriteSettings();
+                }
+
+                HotkeyEditor_toggleSymModePrimary = GameSettings.Editor_toggleSymMode.primary;
+                HotkeyEditor_toggleSymModeSecondary = GameSettings.Editor_toggleSymMode.secondary;
+                HotkeyEditor_toggleAngleSnapPrimary = GameSettings.Editor_toggleAngleSnap.primary;
+                HotkeyEditor_toggleAngleSnapSecondary = GameSettings.Editor_toggleAngleSnap.secondary;
+            }
+
+            //Boop: Nuke the editor hotkeys so we can hijack them.
+            SetKeysToNoneValue();
+
+#if DEBUGfalse
             localdumpReflection();
 #endif
             editor = EditorLogic.fetch;
@@ -783,6 +856,7 @@ namespace EditorExtensionsRedux
 
             GameEvents.onEditorPartEvent.Add(EditorPartEvent);
             GameEvents.onEditorSymmetryModeChange.Add(EditorSymmetryModeChange);
+            GameEvents.OnGameSettingsWritten.Add(OnGameSettingsWritten);
 
             if (cfg.NoOffsetLimitEnabled)
                 fob = gameObject.AddComponent<NoOffsetBehaviour.FreeOffsetBehaviour>();
@@ -809,9 +883,16 @@ namespace EditorExtensionsRedux
             GameSettings.Editor_toggleSymMode.secondary = HotkeyEditor_toggleSymModeSecondary;
             GameSettings.Editor_toggleAngleSnap.primary = HotkeyEditor_toggleAngleSnapPrimary;
             GameSettings.Editor_toggleAngleSnap.secondary = HotkeyEditor_toggleAngleSnapSecondary;
-
+            {
+                Log.Info("GameSettings.Editor_toggleSymMode.primary: " + GameSettings.Editor_toggleSymMode.primary);
+                Log.Info("GameSettings.Editor_toggleSymMode.secondary: " + GameSettings.Editor_toggleSymMode.secondary);
+                Log.Info("GameSettings.Editor_toggleAngleSnap.primary: " + GameSettings.Editor_toggleAngleSnap.primary);
+                Log.Info("GameSettings.Editor_toggleAngleSnap.secondary: " + GameSettings.Editor_toggleAngleSnap.secondary);
+            }
             GameEvents.onEditorPartEvent.Remove(EditorPartEvent);
             GameEvents.onEditorSymmetryModeChange.Remove(EditorSymmetryModeChange);
+            GameEvents.OnGameSettingsWritten.Remove(OnGameSettingsWritten);
+
             Destroy(fob);
             NoOffsetBehaviour.FreeOffsetBehaviour.Instance = null;
         }
@@ -1597,7 +1678,7 @@ namespace EditorExtensionsRedux
             return false;
         }
 
-#region Alignments
+        #region Alignments
 
         void AlignToTopOfParent(Part p)
         {
@@ -1705,7 +1786,8 @@ namespace EditorExtensionsRedux
                             pmToDel = new List<PartMovement>();
                         pmToDel.Add(pm);
                     }
-                } catch
+                }
+                catch
                 {
                     partMovement.Remove(pm);
                 }
@@ -2042,9 +2124,9 @@ namespace EditorExtensionsRedux
             }
         }
 
-#endregion
+        #endregion
 
-#region Editor Actions
+        #region Editor Actions
 
         void AddUndo()
         {
@@ -2325,9 +2407,9 @@ editor.angleSnapSprite.gameObject.SetActive (false);
             }
         }
 
-#endregion
+        #endregion
 
-#region GUI
+        #region GUI
 
         //private Rect _settingsWindowRect;
         GUIStyle osdLabelStyle, symmetryLabelStyle;
@@ -2376,10 +2458,35 @@ editor.angleSnapSprite.gameObject.SetActive (false);
             //skin.customStyles = new GUIStyle[]{ osdLabel, symmetryLabel };
         }
 
+        //show the addon's GUI
+        public void Show()
+        {
+            if (!validVersion)
+                return;
+            this.Visible = true;
+            Log.Debug("Show()");
+            //if (!_settingsWindow.enabled) {
+            //	_settingsWindow.Show (cfg, _configFilePath, pluginVersion);
+            //}
+        }
+
+        //hide the addon's GUI
+        public void Hide()
+        {
+            if (!validVersion)
+                return;
+            this.Visible = false;
+            //Log.Debug ("Hide()");
+            //if (_settingsWindow.enabled) {
+            //	_settingsWindow.enabled = false;
+            //}
+        }
+
         public void SettingsWindowClosed()
         {
             Log.trace("Settings window closed, reloading config");
             cfg = ConfigManager.LoadConfig(ConfigFileName);
+            Hide();
         }
 
         bool _showMenu = false;
@@ -2514,6 +2621,7 @@ editor.angleSnapSprite.gameObject.SetActive (false);
             if (GUILayout.Button("Settings"))
             {
 				_settingsWindow.Show(cfg, ConfigFileName, pluginVersion);
+                this.Visible = true;
             }
 #if true
             if (cfg.FineAdjustEnabled)
@@ -2559,18 +2667,12 @@ editor.angleSnapSprite.gameObject.SetActive (false);
                 EditorExtensions.Instance.HotkeyEditor_toggleAngleSnapPrimary = new KeyCodeExtended(KeyCode.C);
                 EditorExtensions.Instance.HotkeyEditor_toggleAngleSnapSecondary = new KeyCodeExtended(KeyCode.None);
                 // Now reset the GameSettings
-                GameSettings.Editor_toggleSymMode.primary = EditorExtensions.Instance.HotkeyEditor_toggleSymModePrimary;
-                GameSettings.Editor_toggleSymMode.secondary = EditorExtensions.Instance.HotkeyEditor_toggleSymModeSecondary;
-                GameSettings.Editor_toggleAngleSnap.primary = EditorExtensions.Instance.HotkeyEditor_toggleAngleSnapPrimary;
-                GameSettings.Editor_toggleAngleSnap.secondary = EditorExtensions.Instance.HotkeyEditor_toggleAngleSnapSecondary;
+                SetKeysToSavedSettings();
                 // and Save the game settings
-                GameSettings.SaveSettings();
+                SafeWriteSettings();
 
                 //Finally,  set the Gamesetting key to null (see other locations for info)
-                GameSettings.Editor_toggleSymMode.primary = new KeyCodeExtended(KeyCode.None);
-                GameSettings.Editor_toggleSymMode.secondary = new KeyCodeExtended(KeyCode.None);
-                GameSettings.Editor_toggleAngleSnap.primary = new KeyCodeExtended(KeyCode.None);
-                GameSettings.Editor_toggleAngleSnap.secondary = new KeyCodeExtended(KeyCode.None);
+                SetKeysToNoneValue();
 
                 ScreenMessages.PostScreenMessage("Symmetry Mode & Angle Snap keys have been reset", 3f, ScreenMessageStyle.UPPER_CENTER);
 
@@ -2753,7 +2855,7 @@ editor.angleSnapSprite.gameObject.SetActive (false);
             ScreenMessages.PostScreenMessage(message, cfg.OnScreenMessageTime, ScreenMessageStyle.LOWER_CENTER);
         }
 
-#region Snap labels
+        #region Snap labels
 
         const int FONTSIZE = 14;
 
@@ -2951,8 +3053,8 @@ editor.angleSnapSprite.gameObject.SetActive (false);
             }
         }
 
-#endregion
+        #endregion
 
-#endregion
+        #endregion
     }
 }
