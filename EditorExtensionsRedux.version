@@ -1,5 +1,5 @@
 {
-	"NAME":		"EditorExtensionsRedux Unleashed",
+	"NAME":		"EditorExtensionsRedux /L Unleashed",
 	"URL":		"https://raw.githubusercontent.com/net-lisias-kspu/EditorExtensionsRedux/master/EditorExtensionsRedux.version",
 	"DOWNLOAD":	"https://github.com/net-lisias-kspu/EditorExtensionsRedux/releases",
 	"CHANGE_LOG":	"https://raw.githubusercontent.com/net-lisias-kspu/EditorExtensionsRedux/master/CHANGE_LOG.md",
@@ -7,7 +7,7 @@
 	"VERSION":{
 		"MAJOR":3,
 		"MINOR":4,
-		"PATCH":4,
+		"PATCH":5,
 		"BUILD":1
 		},
 	"KSP_VERSION_MIN":{
